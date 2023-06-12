@@ -1,6 +1,6 @@
 <?php
 
-use gift\app\actions\AddPrestaToBoxAction;
+use gift\app\actions\GetCategories;
 use gift\app\actions\BoxFormAction;
 use gift\app\actions\CategorieFormAction;
 use gift\app\actions\CreateBoxAction;
@@ -36,5 +36,5 @@ return function (Slim\App $app): void {
     $app->post('/new/categorie[/]', CreateCategorieAction::class)->setName('createCat');
 
     // ajoute une prestation à une box
-    $app->post('/box/attach/prestation[/]', AddPrestaToBoxAction::class)->setName('prestaBox');
+    $app->post('/box/attach/prestation[/]', GetCategories::class)->setName('prestaBox');
 };
