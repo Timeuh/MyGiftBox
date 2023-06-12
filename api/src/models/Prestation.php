@@ -31,8 +31,7 @@ class Prestation extends Model {
             'box2presta',
             'presta_id',
             'box_id')
-            ->withPivot('quantite')
-            ->withPivot('date');
+            ->withPivot('quantite', 'date');
     }
 }
 
