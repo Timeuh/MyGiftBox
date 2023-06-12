@@ -8,7 +8,7 @@ services:
   web:
     image: canals/php:latest
     ports:
-      - "16969:80"
+      - "17000:80"
     environment:
       - http_proxy=http://www-cache.iutnc.univ-lorraine.fr:3128
       - https_proxy=http://www-cache-iutnc.univ-lorraine.fr:3128
@@ -26,7 +26,7 @@ services:
   database:
     image: mariadb:latest
     ports:
-      - "16970:3306"
+      - "17001:3306"
     networks:
       gift.net:
         aliases:
@@ -40,7 +40,7 @@ services:
   dbAdmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - "16971:80"
+      - "17002:80"
     environment:
       - PMA_HOST=gift.db
     networks:
