@@ -27,4 +27,5 @@ Homestead.json
 src/vendor/
 /api/src/vendor/
 /appli/src/vendor/
-/api/src/conf/gift.db.conf.ini.dist
+/appli/src/conf/gift.db.conf.ini
+/api/src/conf/gift.db.conf.ini

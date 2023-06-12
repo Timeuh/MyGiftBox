@@ -14,7 +14,7 @@ $app->addErrorMiddleware(true, false, false);
 $app->setBasePath('');
 
 // initialise Eloquent avec le fichier de config
-Eloquent::init(__DIR__ . '/../conf/gift.db.conf.ini.dist');
+Eloquent::init(__DIR__ . '/../conf/gift.db.conf.ini');
 
 session_start();
 
