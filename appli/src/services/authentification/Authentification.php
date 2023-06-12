@@ -7,7 +7,7 @@ use PHPUnit\Logging\Exception;
 
 class Authentification
 {
-    static function connexion($email, $mdp) : ?array
+    static function connexion($email, $mdp)
     {
         $row = User::where('email', $email);
         if ($row->first()) {
@@ -54,7 +54,7 @@ class Authentification
         return true;
     }
 
-    static function checkString($str)
+    static function checkString($str) :bool
     {
         $filterStr = filter_var($str, FILTER_SANITIZE_SPECIAL_CHARS);
         if ($filterStr == $str){

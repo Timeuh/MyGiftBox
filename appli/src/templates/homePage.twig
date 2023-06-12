@@ -1,0 +1,10 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <h1>Home Page</h1>
+    <label>Entre le lien de ta giftbox :</label>
+    <input name="link" type="text" placeholder="<link>">
+    <br>
+    <a href="{{ url_for('login') }}">Ou connecte toi !</a>
+    <a href="{{ url_for('register') }}">Ou inscris toi !</a>
+{% endblock %}
