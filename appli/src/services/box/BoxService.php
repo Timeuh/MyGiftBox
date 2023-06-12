@@ -2,6 +2,7 @@
 
 namespace gift\app\services\box;
 
+use DateTime;
 use Exception;
 use gift\app\models\Box;
 use gift\app\models\Status;
@@ -54,7 +55,7 @@ class BoxService {
         // récupère la box courante
         $box = Box::find($boxId);
         // lui ajoute la prestation
-        $box->prestation()->attach($prestaId, ['quantite' => 1]);
+        $box->prestation()->attach($prestaId, ['quantite' => 1, 'date' => new DateTime('now')]);
         // sauvegarde la box
         return $box->save();
     }
