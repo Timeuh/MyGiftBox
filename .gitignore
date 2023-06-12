@@ -24,4 +24,4 @@ Homestead.json
 
 # projet
 .idea/
-src/vendor/
+/appli/src/vendor/
