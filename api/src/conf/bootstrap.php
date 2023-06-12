@@ -2,8 +2,6 @@
 
 use gift\app\services\utils\Eloquent;
 use Slim\Factory\AppFactory;
-use Slim\Views\Twig;
-use Slim\Views\TwigMiddleware;
 
 // crée l'app et le moteur de templates
 $app = AppFactory::create();

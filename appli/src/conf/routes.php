@@ -1,10 +1,10 @@
 <?php
 
-use gift\app\actions\GetCategories;
 use gift\app\actions\BoxFormAction;
 use gift\app\actions\CategorieFormAction;
 use gift\app\actions\CreateBoxAction;
 use gift\app\actions\CreateCategorieAction;
+use gift\app\actions\DisplayBoxAction;
 use gift\app\actions\DisplayCatPrestationsAction;
 use gift\app\actions\GetCategorieAction;
 use gift\app\actions\GetCategoriesAction;
@@ -36,5 +36,8 @@ return function (Slim\App $app): void {
     $app->post('/new/categorie[/]', CreateCategorieAction::class)->setName('createCat');
 
     // ajoute une prestation à une box
-    $app->post('/box/attach/prestation[/]', GetCategories::class)->setName('prestaBox');
+    $app->post('/box/attach/prestation[/]', AddPrestaToBoxAction::class)->setName('prestaBox');
+
+    // affiche la box courante
+    $app->get('/box/view/current[/]', DisplayBoxAction::class)->setName('displayCurrentBox');
 };

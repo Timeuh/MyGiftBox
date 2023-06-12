@@ -2,9 +2,7 @@
 
 namespace gift\app\services\box;
 
-use Exception;
 use gift\app\models\Box;
-use Ramsey\Uuid\Uuid;
 
 // gère les actions sur les box
 class BoxService {

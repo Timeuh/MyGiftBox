@@ -58,4 +58,9 @@ class BoxService {
         // sauvegarde la box
         return $box->save();
     }
+
+    // récupère une box avec son id
+    public static function getBoxById(string $boxId) : Box {
+        return Box::find($boxId);
+    }
 }

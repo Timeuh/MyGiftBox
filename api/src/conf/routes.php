@@ -1,9 +1,9 @@
 <?php
 
 use gift\app\actions\GetCategories;
+use gift\app\actions\GetCoffretById;
 use gift\app\actions\GetPrestations;
 use gift\app\actions\GetPrestationsByCategorie;
-use gift\app\actions\GetCoffretById;
 
 return function (Slim\App $app): void {
 

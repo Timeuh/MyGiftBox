@@ -2,7 +2,6 @@
 
 namespace gift\app\services\prestations;
 
-use Exception;
 use gift\app\models\Categorie;
 use gift\app\models\Prestation;
 

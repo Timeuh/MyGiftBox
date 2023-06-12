@@ -3,7 +3,6 @@
 namespace gift\app\actions;
 
 use gift\app\services\box\BoxService;
-use gift\app\services\prestations\PrestationsService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
