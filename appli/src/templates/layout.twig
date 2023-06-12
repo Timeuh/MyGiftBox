@@ -1,0 +1,23 @@
+<html lang="fr">
+<head>
+    <title>Appli</title>
+    <link rel="stylesheet" href="{{ base_path() }}/style/main.css">
+</head>
+<body>
+    <header>
+        <h1>Mon application avec Slim et Twig</h1>
+    </header>
+    <nav>
+        <a href="{{ url_for('categories') }}">Catégories</a>
+        <a href="{{ url_for('newBox') }}">+Box</a>
+        <a href="{{ url_for('newCat') }}">+Catégorie</a>
+    </nav>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <h3>Site créé par Timothée Brindejonc</h3>
+    </footer>
+</body>
+</html>

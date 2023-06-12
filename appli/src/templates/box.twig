@@ -1,0 +1,10 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <h1>Création d'une box</h1>
+    {% if boxCreated %}
+        <h2>La box a bien été créée</h2>
+    {% else %}
+        <h2>La box n'a pas pu être créée</h2>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <h1>{{ presta.libelle }}</h1>
+    <p>{{ presta.description }}</p>
+    <form method="post" action="{{ url_for('prestaBox') }}">
+        <input type="hidden" name="presta" value="{{ presta.id }}">
+        <input type="hidden" name="box" value="{{ box_id }}">
+        <button type="submit">+</button>
+    </form>
+    <a href="{{ url_for('categories') }}">Accueil</a>
+{% endblock %}

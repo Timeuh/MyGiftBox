@@ -1,0 +1,11 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <h1>Toutes les prestations de la catégorie {{ cat.libelle }}</h1>
+    <ul>
+        {% for presta in prestations %}
+            <li><a href="{{ base_path() }}/prestation?id={{ presta.id }}">{{ presta.libelle }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('catById', {'id': cat.id}) }}">Retour</a>
+{% endblock %}

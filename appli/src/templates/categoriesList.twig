@@ -1,0 +1,10 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <h1>Catégories</h1>
+    <ul>
+        {% for cat in categories %}
+            <li><a href="{{ url_for('catById', {'id': cat.id}) }}">{{ cat.libelle }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
