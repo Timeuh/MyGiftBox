@@ -1,5 +1,6 @@
 <?php
 
+use gift\app\actions\AddPrestaToBoxAction;
 use gift\app\actions\BoxFormAction;
 use gift\app\actions\CategorieFormAction;
 use gift\app\actions\CreateBoxAction;
