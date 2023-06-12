@@ -14,9 +14,9 @@ class GetCoffretById extends AbstractAction
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
 
-        $box = BoxService::getBoxByID(intval($args['id']))[0];
+        $box = BoxService::getBoxByID($args['id'])[0];
 
-        $prestations = BoxService::getPrestationsByBox(intval($args['id']));
+        $prestations = BoxService::getPrestationsByBox($args['id']);
 
 
         $data = [
@@ -27,12 +27,17 @@ class GetCoffretById extends AbstractAction
         $data['Box'][] = [
             'Box' => [
                 'id' => $box['id'],
+                'token' => $box['token'],
                 'libelle' => $box['libelle'],
                 'description' => $box['description'],
+                'montant' => $box['montant'],
+                'kdo' => $box['kdo'],
+                'message_kdo' => $box['message_kdo'],
+                'statut' => $box['statut'],
             ],
             'links' => [
                 'self' => [
-                    'href' => '/categories/' . $box['id'] . '/',
+                    'href' => '/box/view/' . $box['token'],
                 ]
             ]
         ];
@@ -46,6 +51,8 @@ class GetCoffretById extends AbstractAction
                     'tarif' => $prestation['tarif'],
                     'img' => $prestation['img'],
                     'cat_id' => $prestation['cat_id'],
+                    'quantite' => $prestation->pivot->quantite,
+                    'date' => $prestation->pivot->date,
                 ],
                 'links' => [
                     'self' => [
