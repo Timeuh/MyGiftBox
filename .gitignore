@@ -25,3 +25,6 @@ Homestead.json
 # projet
 .idea/
 src/vendor/
+/api/src/vendor/
+/appli/src/vendor/
+/api/src/conf/gift.db.conf.ini.dist
