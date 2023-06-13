@@ -49,6 +49,9 @@ return function (Slim\App $app): void {
     // crée une box
     $app->post('/boxes/new[/]', CreateBoxAction::class)->setName('createBox');
 
+    // Lien d'accès à une box
+    $app->get('/box/view/public/{id}[/]', \gift\app\actions\GetBoxFinieAction::class)->setName('boxFinieView');
+
     // afficher les prestations d'une catégorie
     $app->get('/categorie/{id}/prestations[/]', DisplayCatPrestationsAction::class)->setName('catPresta');
 

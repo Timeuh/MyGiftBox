@@ -33,9 +33,9 @@ Projet MyGiftBox du semestre 4
 ## 12 Modification d'un coffret : modification des quantités
 ❌ Fonctionnalité non réalisée
 ## 13 Génération de l'URL d'accès
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité réalisée par Nicolas Bernardet
 ## 14 Accès au coffret
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité réalisée par Nicolas Bernardet
 ## 15 Signin
 ✅ Fonctionnalité réalisée par Nicolas Bernardet
 ## 16 Register
