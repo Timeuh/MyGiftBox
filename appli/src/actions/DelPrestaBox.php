@@ -2,13 +2,11 @@
 
 namespace gift\app\actions;
 
+use gift\app\models\Box;
 use gift\app\services\box\BoxService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Slim\Exception\HttpBadRequestException;
 use Slim\Routing\RouteContext;
-use Slim\Views\Twig;
-use gift\app\models\Box;
 
 // permet l'ajout d'une prestation à une box
 class DelPrestaBox extends AbstractAction {
