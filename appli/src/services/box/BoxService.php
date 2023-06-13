@@ -93,9 +93,9 @@ class BoxService {
     }
 
     // passe une box à l'état validé
-    public static function validateBox(string $boxId) : bool {
+    public static function validateBox(string $boxToken) : bool {
         // retrouve la box en bd
-        $box = Box::find($boxId);
+        $box = Box::where('token', $boxToken)->first();
 
         // si elle n'existe pas, retourne false
         if ($box === null){
