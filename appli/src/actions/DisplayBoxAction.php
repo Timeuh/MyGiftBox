@@ -2,12 +2,12 @@
 
 namespace gift\app\actions;
 
+use gift\app\models\Box;
 use gift\app\services\box\BoxService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpBadRequestException;
 use Slim\Views\Twig;
-use gift\app\models\Box;
 
 // permet l'affichage d'une box
 class DisplayBoxAction extends AbstractAction
@@ -28,25 +28,21 @@ class DisplayBoxAction extends AbstractAction
         $box = Box::where("token",$boxId)->first();
         if (!isset($_SESSION["user"]->email) || $_SESSION["user"]->email != $box->author_id) {
             if ($box->statut < 3) {
-                throw new HttpBadRequestException($request, "Vous ne pouvez pas encore acceder à cette box");
+                throw new HttpBadRequestException($request, "Vous ne pouvez pas encore accéder à cette box");
             }
         }
 
         // récupère les prestations
         $prestations = $box->prestation()->withPivot('quantite')->get();
 
-        if ($box->statut >= 2){
-            $canValidate = false;
-        } else {
-            // vérifie si la box peut être validée
-            $canValidate = BoxService::checkCanValidate($prestations);
-        }
+        // vérifie si la box peut être validée
+        $canValidate = BoxService::checkCanValidate($prestations);
 
         // charge la vue depuis la template Twig et la retourne
         $view = Twig::fromRequest($request);
 
-        if ($box->statut < 3) {
-            return $view->render($response, 'afficherBox.twig', ['box' => $box, 'prestations' => $prestations]);
+        if ($box->statut < 2) {
+            return $view->render($response, 'afficherBox.twig', ['box' => $box, 'prestations' => $prestations, 'canValidate' => $canValidate]);
         } else {
             return $view->render($response, 'afficherBoxFinie.twig', ['box' => $box, 'prestations' => $prestations]);
         }
