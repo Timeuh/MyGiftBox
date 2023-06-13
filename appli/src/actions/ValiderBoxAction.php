@@ -26,6 +26,6 @@ class ValiderBoxAction extends AbstractAction {
 
         // charge la vue depuis la template Twig et la retourne
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'boxToPresta.twig', ['boxValidated' => $success]);
+        return $view->render($response, 'validateBox.twig', ['boxValidated' => $success]);
     }
 }
