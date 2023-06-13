@@ -10,7 +10,17 @@
     <ul>
         {% for pres in prestations %}
             <li>
-                <h3>{{ pres.libelle }} : {{ pres.tarif }}€</h3>
+                <h3>{{ pres.libelle }} : {{ pres.tarif }}€. Quantité : {{ pres.pivot.quantite}}</h3>
+                <form method="post" action="{{ url_for('prestaBox') }}">
+                    <input type="hidden" name="presta" value="{{ pres.id }}">
+                    <input type="hidden" name="box" value="{{ box.id }}">
+                    <button type="submit">+</button>
+                </form>
+                <form method="post" action="{{ url_for('delPrestaBox') }}">
+                    <input type="hidden" name="presta" value="{{ pres.id }}">
+                    <input type="hidden" name="box" value="{{ box.id }}">
+                    <button type="submit">-</button>
+                </form>
             </li>
         {% endfor %}
     </ul>

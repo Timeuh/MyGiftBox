@@ -23,23 +23,23 @@ Projet MyGiftBox du semestre 4
 ## 7 Ajout de prestations dans le coffret
 ✅ Fonctionnalité réalisée ensemble en cours.
 ## 8 Affichage d'un coffret
-❌ Fonctionnalité non réalisée
+✅ Réalisé par Timothée Brindejonc
 ## 9 Validation d'un coffret
 ❌ Fonctionnalité non réalisée
 ## 10 Paiement d'un coffret
 ❌ Fonctionnalité non réalisée
 ## 11 Modification d'un coffret : suppression de prestations
-❌ Fonctionnalité non réalisée
+✅ Réalisé par Jules Steelandt
 ## 12 Modification d'un coffret : modification des quantités
-❌ Fonctionnalité non réalisée
+✅ Réalisé par Jules Steelandt
 ## 13 Génération de l'URL d'accès
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité réalisée par Nicolas Bernardet
 ## 14 Accès au coffret
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité réalisée par Nicolas Bernardet
 ## 15 Signin
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité réalisée par Nicolas Bernardet
 ## 16 Register
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité réalisée par Nicolas Bernardet
 ## 17 Accéder à ses coffrets
 ❌ Fonctionnalité non réalisée
 ## 18 Afficher les box prédéfinies

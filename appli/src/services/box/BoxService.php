@@ -5,6 +5,7 @@ namespace gift\app\services\box;
 use DateTime;
 use Exception;
 use gift\app\models\Box;
+use gift\app\models\Prestation;
 use gift\app\models\Status;
 use Illuminate\Database\Eloquent\Collection;
 use Ramsey\Uuid\Uuid;
@@ -25,6 +26,11 @@ class BoxService {
             throw new Exception('Les champs entrés ne sont pas valides !');
         }
 
+        // les filtre, puis, s'ils ne correspondent pas, lance une erreur
+        if (!isset($_SESSION["user"]->email)){
+            throw new Exception('Il faut etre connecté pour créer une box');
+        }
+
         // crée une box
         $box = new Box();
 
@@ -38,6 +44,7 @@ class BoxService {
 
         // remplit les autres champs
         $box->libelle = $libelle;
+        $box->author_id = $_SESSION["user"]->email;
         $box->description = $description;
         $box->montant = 0;
         $box->id = Uuid::uuid4()->toString();
@@ -58,6 +65,7 @@ class BoxService {
         // lui ajoute la prestation
         $box->prestation()->attach($prestaId, ['quantite' => 1, 'date' => new DateTime('now')]);
         // sauvegarde la box
+        self::addMontant($prestaId,$boxId);
         return $box->save();
     }
 
@@ -99,5 +107,49 @@ class BoxService {
 
         // sauvegarde la modification
         return $box->save();
+    }
+
+    public static function delPrestation(string $prestaId, string $boxId){
+        // récupère la box courante
+        $box = Box::find($boxId);
+        // lui ajoute la prestation
+        $box->prestation()->detach($prestaId);
+        self::delMontant($prestaId,$boxId);
+    }
+
+    public static function addQuantite(string $prestaId, string $boxId){
+        // récupère la box courante
+        $box = Box::find($boxId);
+        // lui ajoute la prestation
+        $presta = $box->prestation()->find($prestaId);
+        $qty = $presta->pivot->quantite;
+        $box->prestation()->updateExistingPivot($presta, ['quantite' => $qty+1]);
+        self::addMontant($prestaId,$boxId);
+    }
+
+    public static function delQuantite(string $prestaId, string $boxId){
+        // récupère la box courante
+        $box = Box::find($boxId);
+        // lui ajoute la prestation
+        $presta = $box->prestation()->find($prestaId);
+        $qty = $presta->pivot->quantite;
+        $box->prestation()->updateExistingPivot($presta, ['quantite' => $qty-1]);
+        self::delMontant($prestaId,$boxId);
+    }
+
+    private static function addMontant(string $prestaId, string $boxId){
+        $box = Box::find($boxId);
+        $presta = Prestation::find($prestaId);
+
+        $box->montant += $presta->tarif;
+        $box->save();
+    }
+
+    private static function delMontant(string $prestaId, string $boxId){
+        $box = Box::find($boxId);
+        $presta = Prestation::find($prestaId);
+
+        $box->montant -= $presta->tarif;
+        $box->save();
     }
 }

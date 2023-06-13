@@ -2,27 +2,30 @@
 
 namespace gift\app\actions;
 
+use gift\app\models\Box;
 use gift\app\services\box\BoxService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Routing\RouteContext;
 
 // permet l'ajout d'une prestation à une box
-class AddPrestaToBoxAction extends AbstractAction {
+class DelPrestaBox extends AbstractAction {
 
     // méthode invoquée automatiquement à la création de la page
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
         // récupère les paramètres de la requête
         $params = $request->getParsedBody();
 
-        $box = BoxService::getBoxById($params['box']);
+        // supprime la prestation à la box
+        $box = Box::find($params['box']);
         // récupère les prestations
         $prestations = $box->prestation()->find($params['presta']);
+        $qty = $prestations->pivot->quantite;
 
-        if ($prestations == null) {
-            BoxService::addPrestation($params['presta'], $params['box']);
+        if ($qty==1) {
+            BoxService::delPrestation($params['presta'], $params['box']);
         }else{
-            BoxService::addQuantite($params['presta'], $params['box']);
+            BoxService::delQuantite($params['presta'], $params['box']);
         }
 
         // charge la vue depuis la template Twig et la retourne

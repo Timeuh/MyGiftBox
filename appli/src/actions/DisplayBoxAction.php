@@ -23,8 +23,13 @@ class DisplayBoxAction extends AbstractAction {
 
         // récupère la box
         $box = BoxService::getBoxById($boxId);
+        if (!isset($_SESSION["user"]->email) || $_SESSION["user"]->email!=$box->author_id){
+            if ($box->status<3){
+                throw new HttpBadRequestException($request,"Vous ne pouvez pas encore acceder à cette box");
+            }
+        }
         // récupère les prestations
-        $prestations = $box->prestation()->get();
+        $prestations = $box->prestation()->withPivot('quantite')->get();
 
         if ($box->statut >= 2){
             $canValidate = false;
