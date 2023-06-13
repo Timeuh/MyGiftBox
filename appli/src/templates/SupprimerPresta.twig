@@ -1,0 +1,11 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <h1>Suppression d'une prestation à la box</h1>
+    {% if prestaAdded %}
+        <h2>La prestation a été supprimé de la box</h2>
+    {% else %}
+        <h2>Vous n'êtes pas le créateur de la box</h2>
+    {% endif %}
+    <a href="{{ url_for('categories') }}">Continuer mes ajouts</a>
+{% endblock %}

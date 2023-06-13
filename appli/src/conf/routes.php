@@ -10,6 +10,7 @@ use gift\app\actions\DisplayCatPrestationsAction;
 use gift\app\actions\GetCategorieAction;
 use gift\app\actions\GetCategoriesAction;
 use gift\app\actions\GetPrestationAction;
+use gift\app\actions\DelPrestaBox;
 
 return function (Slim\App $app): void {
     // affiche une liste cliquable des catégories
@@ -41,4 +42,8 @@ return function (Slim\App $app): void {
 
     // affiche la box courante
     $app->get('/box/view/current[/]', DisplayBoxAction::class)->setName('displayCurrentBox');
+
+    $app->post('/box/del/prestation[/]', DelPrestaBox::class)->setName('delPrestaBox');
+
+
 };

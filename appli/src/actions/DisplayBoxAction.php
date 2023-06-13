@@ -24,7 +24,7 @@ class DisplayBoxAction extends AbstractAction {
         // récupère la box
         $box = BoxService::getBoxById($boxId);
         // récupère les prestations
-        $prestations = $box->prestation()->get();
+        $prestations = $box->prestation()->withPivot('quantite')->get();
 
         // charge la vue depuis la template Twig et la retourne
         $view = Twig::fromRequest($request);
