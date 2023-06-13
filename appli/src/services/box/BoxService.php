@@ -25,6 +25,11 @@ class BoxService {
             throw new Exception('Les champs entrés ne sont pas valides !');
         }
 
+        // les filtre, puis, s'ils ne correspondent pas, lance une erreur
+        if (!isset($_SESSION["user"]->email)){
+            throw new Exception('Il faut etre connecté pour créer une box');
+        }
+
         // crée une box
         $box = new Box();
 
@@ -38,6 +43,7 @@ class BoxService {
 
         // remplit les autres champs
         $box->libelle = $libelle;
+        $box->author_id = $_SESSION["user"]->email;
         $box->description = $description;
         $box->montant = 0;
         $box->id = Uuid::uuid4()->toString();

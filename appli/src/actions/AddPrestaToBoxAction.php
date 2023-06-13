@@ -5,6 +5,7 @@ namespace gift\app\actions;
 use gift\app\services\box\BoxService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Slim\Routing\RouteContext;
 use Slim\Views\Twig;
 
 // permet l'ajout d'une prestation à une box
@@ -26,7 +27,11 @@ class AddPrestaToBoxAction extends AbstractAction {
         }
 
         // charge la vue depuis la template Twig et la retourne
-        $view = Twig::fromRequest($request);
-        return $view->render($response, 'boxToPresta.twig', ['prestaAdded' => true]);
+        $routeContext = RouteContext::fromRequest($request);
+        $routeParser = $routeContext->getRouteParser();
+        $url = $routeParser->urlFor('displayCurrentBox');
+
+        // retourne la redirection
+        return $response->withStatus(302)->withHeader('Location', $url);
     }
 }

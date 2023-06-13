@@ -6,6 +6,7 @@ use gift\app\services\box\BoxService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Routing\RouteContext;
 use Slim\Views\Twig;
 use gift\app\models\Box;
 
@@ -18,10 +19,10 @@ class DelPrestaBox extends AbstractAction {
         $params = $request->getParsedBody();
 
         // supprime la prestation à la box
-        $box = BoxService::getBoxById($params['box']);
+        $box = Box::find($params['box']);
         // récupère les prestations
-        $prestation = $box->prestation()->find($params['presta']);
-        $qty = $prestation->pivot->quantite;
+        $prestations = $box->prestation()->find($params['presta']);
+        $qty = $prestations->pivot->quantite;
 
         if ($qty==1) {
             BoxService::delPrestation($params['presta'], $params['box']);
@@ -30,7 +31,11 @@ class DelPrestaBox extends AbstractAction {
         }
 
         // charge la vue depuis la template Twig et la retourne
-        $view = Twig::fromRequest($request);
-        return $view->render($response, 'SupprimerPresta.twig', ['prestaAdded' => true]);
+        $routeContext = RouteContext::fromRequest($request);
+        $routeParser = $routeContext->getRouteParser();
+        $url = $routeParser->urlFor('displayCurrentBox');
+
+        // retourne la redirection
+        return $response->withStatus(302)->withHeader('Location', $url);
     }
 }

@@ -20,7 +20,7 @@ return function (Slim\App $app): void {
     //affiche le post de la home page
     $app->post('[/]', \gift\app\actions\GetHomePageAction::class)->setName('homePage');
 
-    //Affiche log form
+    //Affiche mkrg form
     $app->get('/login[/]', \gift\app\actions\LoginFormAction::class)->setName('login');
 
     //Affiche de log action

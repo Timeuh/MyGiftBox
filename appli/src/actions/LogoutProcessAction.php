@@ -16,6 +16,7 @@ class LogoutProcessAction extends AbstractAction {
     {
         $view = Twig::fromRequest($request);
         unset($_SESSION['user']);
+        $_SESSION['currentBox'] = null;
         $log = false;
         $prenom = "";
         $nom = "";
