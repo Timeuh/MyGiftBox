@@ -14,15 +14,15 @@ class ValiderBoxAction extends AbstractAction {
     // méthode magique invoquée pour gérer l'action
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
         // récupère l'id de la box courante
-        $boxId = $_SESSION['currentBox'] ?? null;
+        $boxToken = $args['token'] ?? null;
 
         // si la box courante n'existe pas, lance une exception
-        if ($boxId === null) {
-            throw new HttpBadRequestException($request, "vous n'avez pas créé de box ! créez-en une avant de la valider !");
+        if ($boxToken === null) {
+            throw new HttpBadRequestException($request, "Erreur dans la récupération de la box !");
         }
 
         // valide la box
-        $success = BoxService::validateBox($boxId);
+        $success = BoxService::validateBox($boxToken);
 
         // charge la vue depuis la template Twig et la retourne
         $view = Twig::fromRequest($request);

@@ -2,14 +2,13 @@
 
 namespace gift\app\actions;
 
-use gift\app\services\box\BoxService;
+use gift\app\models\Box;
 use gift\app\services\prestations\PrestationsService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpBadRequestException;
 use Slim\Exception\HttpNotFoundException;
 use Slim\Views\Twig;
-use gift\app\models\Box;
 
 // affiche une prestation
 class GetPrestationAction extends AbstractAction {

@@ -5,7 +5,7 @@
     <p>{{ box.description }}</p>
     <h2>Montant {{ box.montant }}€</h2>
     {% if canValidate %}
-        <a href="{{ url_for('validateBox') }}">Valider ma box</a>
+        <a href="{{ url_for('validateBox', {'token': box.token}) }}">Valider ma box</a>
     {% endif %}
     <ul>
         {% for pres in prestations %}
