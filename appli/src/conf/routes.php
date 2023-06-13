@@ -13,6 +13,28 @@ use gift\app\actions\GetPrestationAction;
 use gift\app\actions\DelPrestaBox;
 
 return function (Slim\App $app): void {
+
+    //Affiche le get de la home page
+    $app->get('[/]', \gift\app\actions\GetHomePageAction::class)->setName('homePage');
+
+    //affiche le post de la home page
+    $app->post('[/]', \gift\app\actions\GetHomePageAction::class)->setName('homePage');
+
+    //Affiche log form
+    $app->get('/login[/]', \gift\app\actions\LoginFormAction::class)->setName('login');
+
+    //Affiche de log action
+    $app->post('/login[/]', \gift\app\actions\LoginProcessAction::class)->setName('login');
+
+    //Logout
+    $app->get('/logout[/]', \gift\app\actions\LogoutProcessAction::class)->setName('logout');
+
+    //Affiche reg form
+    $app->get('/register[/]', \gift\app\actions\RegisterFormAction::class)->setName('register');
+
+    //Affiche de reg action
+    $app->post('/register[/]', \gift\app\actions\RegisterProcessAction::class)->setName('register');
+
     // affiche une liste cliquable des catégories
     $app->get('/categories[/]', GetCategoriesAction::class)->setName('categories');
 

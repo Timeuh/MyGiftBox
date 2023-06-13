@@ -37,9 +37,9 @@ Projet MyGiftBox du semestre 4
 ## 14 Accès au coffret
 ❌ Fonctionnalité non réalisée
 ## 15 Signin
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité réalisée par Nicolas Bernardet
 ## 16 Register
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité réalisée par Nicolas Bernardet
 ## 17 Accéder à ses coffrets
 ❌ Fonctionnalité non réalisée
 ## 18 Afficher les box prédéfinies
