@@ -8,6 +8,7 @@
         {% for pres in prestations %}
             <li>
                 <h3>{{ pres.libelle }} : {{ pres.tarif }}€</h3>
+                <span>Quantité : {{ pres.pivot.quantite }}</span>
             </li>
         {% endfor %}
     </ul>
