@@ -28,7 +28,7 @@ class AddPrestaToBoxAction extends AbstractAction {
         // charge la vue depuis la template Twig et la retourne
         $routeContext = RouteContext::fromRequest($request);
         $routeParser = $routeContext->getRouteParser();
-        $url = $routeParser->urlFor('displayCurrentBox');
+        $url = $routeParser->urlFor('boxView',['token'=>$box->token]);
 
         // retourne la redirection
         return $response->withStatus(302)->withHeader('Location', $url);

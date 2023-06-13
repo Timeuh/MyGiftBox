@@ -21,7 +21,7 @@ Projet MyGiftBox du semestre 4
 ## 6 Création d'un coffret vide
 ✅ Fonctionnalité réalisée ensemble en cours.
 ## 7 Ajout de prestations dans le coffret
-✅ Fonctionnalité réalisée ensemble en cours.
+✅ Fonctionnalité réalisée par Jules Steelandt et Timothée Brindejonc.
 ## 8 Affichage d'un coffret
 ✅ Réalisé par Timothée Brindejonc
 ## 9 Validation d'un coffret
@@ -41,9 +41,9 @@ Projet MyGiftBox du semestre 4
 ## 16 Register
 ✅ Fonctionnalité réalisée par Nicolas Bernardet
 ## 17 Accéder à ses coffrets
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité réalisée par Jules Steelandt
 ## 18 Afficher les box prédéfinies
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité réalisée par Nicolas Bernardet
 ## 19 Créer un coffret prérempli à partir d'une box
 ❌ Fonctionnalité non réalisée
 ## 20 Créer un coffret prérempli à partir d'une box affichée

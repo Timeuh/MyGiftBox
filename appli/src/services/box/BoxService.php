@@ -48,7 +48,7 @@ class BoxService {
         $box->description = $description;
         $box->montant = 0;
         $box->id = Uuid::uuid4()->toString();
-        $box->token = base64_encode(random_bytes(32));
+        $box->token = self::generateToken();
         $box->statut = Status::CREATED;
 
         // sauvegarde l'id de la box en session
@@ -133,8 +133,10 @@ class BoxService {
         // lui ajoute la prestation
         $presta = $box->prestation()->find($prestaId);
         $qty = $presta->pivot->quantite;
-        $box->prestation()->updateExistingPivot($presta, ['quantite' => $qty-1]);
-        self::delMontant($prestaId,$boxId);
+        if ($qty>0) {
+            $box->prestation()->updateExistingPivot($presta, ['quantite' => $qty - 1]);
+            self::delMontant($prestaId, $boxId);
+        }
     }
 
     private static function addMontant(string $prestaId, string $boxId){
@@ -151,5 +153,12 @@ class BoxService {
 
         $box->montant -= $presta->tarif;
         $box->save();
+    }
+
+    // génère un token pour la box
+    public static function generateToken() : string {
+        $base64 = base64_encode(random_bytes(32));
+        $base64 = strtr($base64, '+/', '-_');
+        return rtrim($base64, '=');
     }
 }

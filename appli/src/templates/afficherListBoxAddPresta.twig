@@ -1,0 +1,20 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    {% if box is null %}
+        <h1> Vous n'avez aucune box modifiable !</h1>
+    {% else %}
+        <h1>Ou voulez vous ajouter la prestation</h1>
+        <form id="AddPrestaToBox" method="post" action="{{ url_for('AddPrestaToBox') }}">
+            <ul>
+                {% for b in box %}
+                    <li>
+                        <button name='box' type="submit" value="{{ b.id }}">{{ b.libelle }}</button>
+                    </li>
+                {% endfor %}
+            </ul>
+            <input type="hidden" name="presta" value="{{ presta }}">
+        </form>
+
+    {% endif %}
+{% endblock %}
