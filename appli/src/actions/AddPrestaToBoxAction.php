@@ -6,7 +6,6 @@ use gift\app\services\box\BoxService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Routing\RouteContext;
-use Slim\Views\Twig;
 
 // permet l'ajout d'une prestation à une box
 class AddPrestaToBoxAction extends AbstractAction {

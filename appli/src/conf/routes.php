@@ -5,36 +5,43 @@ use gift\app\actions\BoxFormAction;
 use gift\app\actions\CategorieFormAction;
 use gift\app\actions\CreateBoxAction;
 use gift\app\actions\CreateCategorieAction;
+use gift\app\actions\DelPrestaBox;
 use gift\app\actions\DisplayBoxAction;
 use gift\app\actions\DisplayCatPrestationsAction;
+use gift\app\actions\GetBoxFinieAction;
 use gift\app\actions\GetCategorieAction;
 use gift\app\actions\GetCategoriesAction;
+use gift\app\actions\GetHomePageAction;
 use gift\app\actions\GetPrestationAction;
-use gift\app\actions\DelPrestaBox;
-use gift\app\actions\GetBoxFinieAction;
+use gift\app\actions\LoginFormAction;
+use gift\app\actions\LoginProcessAction;
+use gift\app\actions\LogoutProcessAction;
+use gift\app\actions\RegisterFormAction;
+use gift\app\actions\RegisterProcessAction;
+use gift\app\actions\ValiderBoxAction;
 
 return function (Slim\App $app): void {
 
     //Affiche le get de la home page
-    $app->get('[/]', \gift\app\actions\GetHomePageAction::class)->setName('homePage');
+    $app->get('[/]', GetHomePageAction::class)->setName('homePage');
 
     //affiche le post de la home page
-    $app->post('[/]', \gift\app\actions\GetHomePageAction::class)->setName('homePage');
+    $app->post('[/]', GetHomePageAction::class)->setName('homePage');
 
     //Affiche mkrg form
-    $app->get('/login[/]', \gift\app\actions\LoginFormAction::class)->setName('login');
+    $app->get('/login[/]', LoginFormAction::class)->setName('login');
 
     //Affiche de log action
-    $app->post('/login[/]', \gift\app\actions\LoginProcessAction::class)->setName('login');
+    $app->post('/login[/]', LoginProcessAction::class)->setName('login');
 
     //Logout
-    $app->get('/logout[/]', \gift\app\actions\LogoutProcessAction::class)->setName('logout');
+    $app->get('/logout[/]', LogoutProcessAction::class)->setName('logout');
 
     //Affiche reg form
-    $app->get('/register[/]', \gift\app\actions\RegisterFormAction::class)->setName('register');
+    $app->get('/register[/]', RegisterFormAction::class)->setName('register');
 
     //Affiche de reg action
-    $app->post('/register[/]', \gift\app\actions\RegisterProcessAction::class)->setName('register');
+    $app->post('/register[/]', RegisterProcessAction::class)->setName('register');
 
     // affiche une liste cliquable des catégories
     $app->get('/categories[/]', GetCategoriesAction::class)->setName('categories');
@@ -69,7 +76,7 @@ return function (Slim\App $app): void {
     // affiche la box courante
     $app->get('/box/view/current[/]', DisplayBoxAction::class)->setName('displayCurrentBox');
 
+    $app->get('/box/validate/current[/]', ValiderBoxAction::class)->setName('validateBox');
+
     $app->post('/box/del/prestation[/]', DelPrestaBox::class)->setName('delPrestaBox');
-
-
 };

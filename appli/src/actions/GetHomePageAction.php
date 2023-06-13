@@ -2,10 +2,8 @@
 
 namespace gift\app\actions;
 
-use gift\app\services\prestations\PrestationsService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Slim\Exception\HttpBadRequestException;
 use Slim\Views\Twig;
 
 // affiche une catégorie
