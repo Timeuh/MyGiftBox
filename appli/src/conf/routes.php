@@ -43,5 +43,5 @@ return function (Slim\App $app): void {
     // affiche la box courante
     $app->get('/box/view/current[/]', DisplayBoxAction::class)->setName('displayCurrentBox');
 
-    $app->get('box/validate/current[/]', ValiderBoxAction::class)->setName('validateBox');
+    $app->get('/box/validate/current[/]', ValiderBoxAction::class)->setName('validateBox');
 };
