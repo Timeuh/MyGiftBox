@@ -25,8 +25,13 @@ class DisplayBoxAction extends AbstractAction {
         $box = BoxService::getBoxById($boxId);
         // récupère les prestations
         $prestations = $box->prestation()->get();
-        // vérifie si la box peut être validée
-        $canValidate = BoxService::checkCanValidate($prestations);
+
+        if ($box->statut >= 2){
+            $canValidate = false;
+        } else {
+            // vérifie si la box peut être validée
+            $canValidate = BoxService::checkCanValidate($prestations);
+        }
 
         // charge la vue depuis la template Twig et la retourne
         $view = Twig::fromRequest($request);
