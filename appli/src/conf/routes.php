@@ -51,6 +51,9 @@ return function (Slim\App $app): void {
     // crée une box
     $app->post('/boxes/new[/]', CreateBoxAction::class)->setName('createBox');
 
+    //Afficher box par défaut
+    $app->get("/box/default[/]", \gift\app\actions\GetBoxDefaultAction::class)->setName('boxDefault');
+
     // Lien d'accès à une box
     $app->get('/box/view/public/{token}[/]', GetBoxFinieAction::class)->setName('boxFinieView');
 
