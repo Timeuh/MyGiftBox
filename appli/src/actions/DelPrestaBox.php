@@ -2,13 +2,11 @@
 
 namespace gift\app\actions;
 
+use gift\app\models\Box;
 use gift\app\services\box\BoxService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Slim\Exception\HttpBadRequestException;
 use Slim\Routing\RouteContext;
-use Slim\Views\Twig;
-use gift\app\models\Box;
 
 // permet l'ajout d'une prestation à une box
 class DelPrestaBox extends AbstractAction {
@@ -22,14 +20,15 @@ class DelPrestaBox extends AbstractAction {
         $box = Box::find($params['box']);
         // récupère les prestations
         $prestations = $box->prestation()->find($params['presta']);
-        $qty = $prestations->pivot->quantite;
+        if ($prestations!=null) {
+            $qty = $prestations->pivot->quantite;
 
-        if ($qty==1) {
-            BoxService::delPrestation($params['presta'], $params['box']);
-        }else{
-            BoxService::delQuantite($params['presta'], $params['box']);
+            if ($qty == 1) {
+                BoxService::delPrestation($params['presta'], $params['box']);
+            } else {
+                BoxService::delQuantite($params['presta'], $params['box']);
+            }
         }
-
         // charge la vue depuis la template Twig et la retourne
         $routeContext = RouteContext::fromRequest($request);
         $routeParser = $routeContext->getRouteParser();

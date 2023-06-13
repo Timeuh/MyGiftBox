@@ -7,6 +7,7 @@ use Exception;
 use gift\app\models\Box;
 use gift\app\models\Prestation;
 use gift\app\models\Status;
+use Illuminate\Database\Eloquent\Collection;
 use Ramsey\Uuid\Uuid;
 
 // gère les actions sur les box
@@ -73,6 +74,40 @@ class BoxService {
         return Box::find($boxId);
     }
 
+    // vérifie si la box peut être validée
+    public static function checkCanValidate(Collection $prestations) : bool {
+        // initialise des variables conteurs
+        $catNumber = 0;
+        $currentCat = 'noCat';
+
+        // parcours les prestations de la box
+        foreach($prestations as $presta){
+            if ($currentCat !== $presta->categorie->libelle){
+                $currentCat = $presta->categorie->libelle;
+                $catNumber ++;
+            }
+        }
+
+        // vérifie s'il y a au moins 2 catégories différentes et au moins 2 prestations
+        return ($catNumber >= 2 && sizeof($prestations) >= 2);
+    }
+
+    // passe une box à l'état validé
+    public static function validateBox(string $boxId) : bool {
+        // retrouve la box en bd
+        $box = Box::find($boxId);
+
+        // si elle n'existe pas, retourne false
+        if ($box === null){
+            return false;
+        }
+
+        // change son statut
+        $box->statut = Status::VALIDATED;
+
+        // sauvegarde la modification
+        return $box->save();
+    }
 
     public static function delPrestation(string $prestaId, string $boxId){
         // récupère la box courante
@@ -119,5 +154,4 @@ class BoxService {
         $box->montant -= $presta->tarif;
         $box->save();
     }
-
 }

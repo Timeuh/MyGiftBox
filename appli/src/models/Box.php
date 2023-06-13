@@ -25,4 +25,5 @@ class Box extends Model
 enum Status
 {
     const CREATED = 1;
+    const VALIDATED = 2;
 }

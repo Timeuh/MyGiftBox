@@ -3,11 +3,8 @@
 namespace gift\app\actions;
 
 use gift\app\services\authentification\Authentification;
-use gift\app\services\prestations\PrestationsService;
-use Illuminate\Support\Facades\Auth;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Slim\Exception\HttpBadRequestException;
 use Slim\Views\Twig;
 
 class RegisterProcessAction extends AbstractAction {

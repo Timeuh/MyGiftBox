@@ -2,6 +2,7 @@
 
 namespace gift\app\actions;
 
+use gift\app\services\box\BoxService;
 use gift\app\services\prestations\PrestationsService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -43,7 +44,6 @@ class GetPrestationAction extends AbstractAction {
                 $currentBoxId = true;
             }
         }
-
 
         // charge la vue depuis la template Twig et la retourne
         $view = Twig::fromRequest($request);
