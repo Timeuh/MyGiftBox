@@ -17,9 +17,17 @@ class LoginProcessAction extends AbstractAction {
         $params = $request->getParsedBody();
 
         $user = Authentification::connexion($params['email'], $params['password']);
-        echo "le user c'est ".$user->prenom;
+        if (isset($_SESSION["user"])){
+            $log = true;
+            $prenom = $_SESSION["user"]->prenom;
+            $nom = $_SESSION["user"]->nom;
+        } else {
+            $log = false;
+            $prenom = "";
+            $nom = "";
+        }
 
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'homePage.twig');
+        return $view->render($response, 'homePage.twig', ["log" => $log, "prenom" => $prenom, "nom"=>$nom]);
     }
 }

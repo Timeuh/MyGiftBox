@@ -24,6 +24,9 @@ return function (Slim\App $app): void {
     //Affiche de log action
     $app->post('/login[/]', \gift\app\actions\LoginProcessAction::class)->setName('login');
 
+    //Logout
+    $app->get('/logout[/]', \gift\app\actions\LogoutProcessAction::class)->setName('logout');
+
     //Affiche reg form
     $app->get('/register[/]', \gift\app\actions\RegisterFormAction::class)->setName('register');
 

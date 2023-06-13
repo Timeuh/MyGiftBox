@@ -2,9 +2,16 @@
 
 {% block content %}
     <h1>Home Page</h1>
+    {% if log %}
+        <h1> Bienvenue {{ prenom }} {{ nom }}</h1>
+        <a href="{{ url_for('logout') }}"> Déconnexion</a>
+    {% else %}
+
+        <a href="{{ url_for('login') }}">Connexion</a>
+        <a href="{{ url_for('register') }}">Inscription</a>
+    {% endif %}
     <label>Entre le lien de ta giftbox :</label>
     <input name="link" type="text" placeholder="<link>">
     <br>
-    <a href="{{ url_for('login') }}">Ou connecte toi !</a>
-    <a href="{{ url_for('register') }}">Ou inscris toi !</a>
+
 {% endblock %}
