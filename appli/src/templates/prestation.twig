@@ -4,7 +4,9 @@
     <h1>{{ presta.libelle }}</h1>
     <p>{{ presta.description }}</p>
     {% if box_id is null %}
-    <h2>Pour ajouter cette prestation à une box, créez-en une !</h2>
+        <h2>Pour ajouter cette prestation à une box, créez-en une !</h2>
+    {% else if box_status >=2 %}
+        <h2>Votre box est validée, vous ne pouvez plus y ajouter de prestation !</h2>
     {% else %}
     <form method="post" action="{{ url_for('prestaBox') }}">
         <input type="hidden" name="presta" value="{{ presta.id }}">
