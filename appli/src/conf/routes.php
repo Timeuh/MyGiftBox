@@ -21,6 +21,7 @@ use gift\app\actions\LoginProcessAction;
 use gift\app\actions\LogoutProcessAction;
 use gift\app\actions\RegisterFormAction;
 use gift\app\actions\RegisterProcessAction;
+use gift\app\actions\ValiderBoxAction;
 
 return function (Slim\App $app): void {
 
@@ -86,4 +87,7 @@ return function (Slim\App $app): void {
 
     // supprime une prestation de la box
     $app->post('/box/del/prestation[/]', DelPrestaBox::class)->setName('delPrestaBox');
+
+    // valide une box
+    $app->get('/box/validate/{token}[/]', ValiderBoxAction::class)->setName('validateBox');
 };
