@@ -2,14 +2,13 @@
 
 namespace gift\app\actions;
 
-use gift\app\services\box\BoxService;
+use gift\app\models\Box;
 use gift\app\services\prestations\PrestationsService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpBadRequestException;
 use Slim\Exception\HttpNotFoundException;
 use Slim\Views\Twig;
-use gift\app\models\Box;
 
 // affiche une prestation
 class GetPrestationAction extends AbstractAction {
@@ -45,17 +44,8 @@ class GetPrestationAction extends AbstractAction {
             }
         }
 
-        // done un statut par défaut
-        $boxStatus = 4;
-
-        // récupère le statut de la box
-        if ($currentBoxId !== null) {
-            $box = BoxService::getBoxById($currentBoxId);
-            $boxStatus = $box->statut;
-        }
-
         // charge la vue depuis la template Twig et la retourne
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'prestation.twig', ['presta' => $prestation[0], 'box_id'=>$currentBoxId, 'box_status'=> $boxStatus]);
+        return $view->render($response, 'prestation.twig', ['presta' => $prestation[0], 'box_id'=>$currentBoxId]);
     }
 }
