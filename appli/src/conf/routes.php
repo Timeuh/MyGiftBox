@@ -8,19 +8,19 @@ use gift\app\actions\CreateCategorieAction;
 use gift\app\actions\DelPrestaBox;
 use gift\app\actions\DisplayBoxAction;
 use gift\app\actions\DisplayCatPrestationsAction;
+use gift\app\actions\DisplayListBoxAction;
+use gift\app\actions\GetBoxDefaultAction;
 use gift\app\actions\GetBoxFinieAction;
+use gift\app\actions\GetBoxToAddPresta;
 use gift\app\actions\GetCategorieAction;
 use gift\app\actions\GetCategoriesAction;
 use gift\app\actions\GetHomePageAction;
 use gift\app\actions\GetPrestationAction;
-use gift\app\actions\DisplayListBoxAction;
-use gift\app\actions\GetBoxToAddPresta;
 use gift\app\actions\LoginFormAction;
 use gift\app\actions\LoginProcessAction;
 use gift\app\actions\LogoutProcessAction;
 use gift\app\actions\RegisterFormAction;
 use gift\app\actions\RegisterProcessAction;
-use gift\app\actions\ValiderBoxAction;
 
 return function (Slim\App $app): void {
 
@@ -61,7 +61,7 @@ return function (Slim\App $app): void {
     $app->post('/boxes/new[/]', CreateBoxAction::class)->setName('createBox');
 
     //Afficher box par défaut
-    $app->get("/box/default[/]", \gift\app\actions\GetBoxDefaultAction::class)->setName('boxDefault');
+    $app->get("/box/default[/]", GetBoxDefaultAction::class)->setName('boxDefault');
 
     // Lien d'accès à une box
     $app->get('/box/view/public/{token}[/]', DisplayBoxAction::class)->setName('boxView');
@@ -84,9 +84,6 @@ return function (Slim\App $app): void {
     // affiche la box courante
     $app->get('/box/view/public[/]', DisplayListBoxAction::class)->setName('displayBox');
 
-    $app->get('/box/validate/current[/]', ValiderBoxAction::class)->setName('validateBox');
-
-    $app->get('/box/validate/current[/]', ValiderBoxAction::class)->setName('validateBox');
-
+    // supprime une prestation de la box
     $app->post('/box/del/prestation[/]', DelPrestaBox::class)->setName('delPrestaBox');
 };
