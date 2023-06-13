@@ -43,7 +43,7 @@ Projet MyGiftBox du semestre 4
 ## 17 Accéder à ses coffrets
 ❌ Fonctionnalité non réalisée
 ## 18 Afficher les box prédéfinies
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité réalisée par Nicolas Bernardet
 ## 19 Créer un coffret prérempli à partir d'une box
 ❌ Fonctionnalité non réalisée
 ## 20 Créer un coffret prérempli à partir d'une box affichée
