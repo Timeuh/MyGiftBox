@@ -16,7 +16,7 @@ class DisplayListBoxAction extends AbstractAction {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
 
         if (!isset($_SESSION["user"])){
-                throw new HttpBadRequestException($request,"Vous n'etes pas connecter");
+                throw new HttpBadRequestException($request,"Vous n'êtes pas connecté");
         }
 
         $box = Box::where('author_id', '=', $_SESSION['user']->email)->get();
