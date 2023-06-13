@@ -49,10 +49,10 @@ Projet MyGiftBox du semestre 4
 ## 20 Créer un coffret prérempli à partir d'une box affichée
 ❌ Fonctionnalité non réalisée
 ## 21 Api : liste des prestations
-❌ Fonctionnalité non réalisée
+✅ Réalisé par Jules Steelandt
 ## 22 Api : liste des catégories
-❌ Fonctionnalité non réalisée
+✅ Réalisé par Jules Steelandt
 ## 23 Api : liste des prestations d'une catégorie
-❌ Fonctionnalité non réalisée
+✅ Réalisé par Jules Steelandt
 ## 24 Api : accès à un coffret
-❌ Fonctionnalité non réalisée
+✅ Réalisé par Jules Steelandt

@@ -3,10 +3,14 @@
 {% block content %}
     <h1>{{ presta.libelle }}</h1>
     <p>{{ presta.description }}</p>
+    {% if box_id is null %}
+    <h2>Pour ajouter cette prestation à une box, créez-en une !</h2>
+    {% else %}
     <form method="post" action="{{ url_for('prestaBox') }}">
         <input type="hidden" name="presta" value="{{ presta.id }}">
         <input type="hidden" name="box" value="{{ box_id }}">
         <button type="submit">+</button>
     </form>
+    {% endif %}
     <a href="{{ url_for('categories') }}">Accueil</a>
 {% endblock %}

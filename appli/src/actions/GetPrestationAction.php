@@ -35,7 +35,7 @@ class GetPrestationAction extends AbstractAction {
         }
 
         // récupère l'id de la box courante
-        $currentBoxId = $_SESSION['currentBox'];
+        $currentBoxId = $_SESSION['currentBox'] ?? null;
 
         // charge la vue depuis la template Twig et la retourne
         $view = Twig::fromRequest($request);

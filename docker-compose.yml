@@ -13,9 +13,8 @@ services:
       - http_proxy=http://www-cache.iutnc.univ-lorraine.fr:3128
       - https_proxy=http://www-cache-iutnc.univ-lorraine.fr:3128
     volumes:
-      - ./public:/var/www/html
-      - ./shared/img:/var/www/html/img
-      - ./src:/var/www/src
+      - ./appli/public:/var/www/html
+      - ./appli/src:/var/www/src
     networks:
       - gift.net
     working_dir: /var/www/src
@@ -43,6 +42,22 @@ services:
       - "17002:80"
     environment:
       - PMA_HOST=gift.db
+    networks:
+      - gift.net
+    depends_on:
+      - database
+
+  api:
+    image: canals/php:latest
+    ports:
+      - "17003:80"
+    environment:
+      - http_proxy=http://www-cache.iutnc.univ-lorraine.fr:3128
+      - https_proxy=http://www-cache-iutnc.univ-lorraine.fr:3128
+    volumes:
+      - ./api/public:/var/www/html
+      - ./api/src:/var/www/src
+    working_dir: /var/www/src
     networks:
       - gift.net
     depends_on:
