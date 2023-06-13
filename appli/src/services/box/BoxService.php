@@ -85,7 +85,7 @@ class BoxService {
     }
 
     // passe une box à l'état validé
-    public static function validateBox(int $boxId) : bool {
+    public static function validateBox(string $boxId) : bool {
         // retrouve la box en bd
         $box = Box::find($boxId);
 
