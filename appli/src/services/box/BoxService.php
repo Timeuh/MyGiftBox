@@ -6,6 +6,7 @@ use DateTime;
 use Exception;
 use gift\app\models\Box;
 use gift\app\models\Status;
+use Illuminate\Database\Eloquent\Collection;
 use Ramsey\Uuid\Uuid;
 
 // gère les actions sur les box
@@ -63,5 +64,23 @@ class BoxService {
     // récupère une box avec son id
     public static function getBoxById(string $boxId) : Box {
         return Box::find($boxId);
+    }
+
+    // vérifie si la box peut être validée
+    public static function checkCanValidate(Collection $prestations) : bool {
+        // initialise des variables conteurs
+        $catNumber = 0;
+        $currentCat = 'noCat';
+
+        // parcours les prestations de la box
+        foreach($prestations as $presta){
+            if ($currentCat !== $presta->categorie->libelle){
+                $currentCat = $presta->categorie->libelle;
+                $catNumber ++;
+            }
+        }
+
+        // vérifie s'il y a au moins 2 catégories différentes et au moins 2 prestations
+        return ($catNumber >= 2 && sizeof($prestations) >= 2);
     }
 }
