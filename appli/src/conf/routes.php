@@ -11,6 +11,7 @@ use gift\app\actions\GetCategorieAction;
 use gift\app\actions\GetCategoriesAction;
 use gift\app\actions\GetPrestationAction;
 use gift\app\actions\DelPrestaBox;
+use gift\app\actions\GetBoxFinieAction;
 
 return function (Slim\App $app): void {
 
@@ -51,7 +52,7 @@ return function (Slim\App $app): void {
     $app->post('/boxes/new[/]', CreateBoxAction::class)->setName('createBox');
 
     // Lien d'accès à une box
-    $app->get('/box/view/public/{id}[/]', \gift\app\actions\GetBoxFinieAction::class)->setName('boxFinieView');
+    $app->get('/box/view/public/{token}[/]', GetBoxFinieAction::class)->setName('boxFinieView');
 
     // afficher les prestations d'une catégorie
     $app->get('/categorie/{id}/prestations[/]', DisplayCatPrestationsAction::class)->setName('catPresta');
