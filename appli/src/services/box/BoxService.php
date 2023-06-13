@@ -48,7 +48,7 @@ class BoxService {
         $box->description = $description;
         $box->montant = 0;
         $box->id = Uuid::uuid4()->toString();
-        $box->token = base64_encode(random_bytes(32));
+        $box->token = self::generateToken();
         $box->statut = Status::CREATED;
 
         // sauvegarde l'id de la box en session
@@ -153,5 +153,12 @@ class BoxService {
 
         $box->montant -= $presta->tarif;
         $box->save();
+    }
+
+    // génère un token pour la box
+    public static function generateToken() : string {
+        $base64 = base64_encode(random_bytes(32));
+        $base64 = strtr($base64, '+/', '-_');
+        return rtrim($base64, '=');
     }
 }
