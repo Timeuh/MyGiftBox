@@ -8,7 +8,7 @@
     {% elseif box_status >=2 %}
         <h2>Votre box est validée, vous ne pouvez plus y ajouter de prestation !</h2>
     {% else %}
-    <form method="post" action="{{ url_for('prestaBox') }}">
+    <form method="post" action="{{ url_for('takeBox') }}">
         <input type="hidden" name="presta" value="{{ presta.id }}">
         <input type="hidden" name="box" value="{{ box_id }}">
         <button type="submit">+</button>

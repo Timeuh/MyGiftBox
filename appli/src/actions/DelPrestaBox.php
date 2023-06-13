@@ -20,18 +20,19 @@ class DelPrestaBox extends AbstractAction {
         $box = Box::find($params['box']);
         // récupère les prestations
         $prestations = $box->prestation()->find($params['presta']);
-        $qty = $prestations->pivot->quantite;
+        if ($prestations!=null) {
+            $qty = $prestations->pivot->quantite;
 
-        if ($qty==1) {
-            BoxService::delPrestation($params['presta'], $params['box']);
-        }else{
-            BoxService::delQuantite($params['presta'], $params['box']);
+            if ($qty == 1) {
+                BoxService::delPrestation($params['presta'], $params['box']);
+            } else {
+                BoxService::delQuantite($params['presta'], $params['box']);
+            }
         }
-
         // charge la vue depuis la template Twig et la retourne
         $routeContext = RouteContext::fromRequest($request);
         $routeParser = $routeContext->getRouteParser();
-        $url = $routeParser->urlFor('displayCurrentBox');
+        $url = $routeParser->urlFor('boxView',['token'=>$box->token]);
 
         // retourne la redirection
         return $response->withStatus(302)->withHeader('Location', $url);

@@ -8,11 +8,12 @@ use gift\app\actions\CreateCategorieAction;
 use gift\app\actions\DelPrestaBox;
 use gift\app\actions\DisplayBoxAction;
 use gift\app\actions\DisplayCatPrestationsAction;
-use gift\app\actions\GetBoxFinieAction;
 use gift\app\actions\GetCategorieAction;
 use gift\app\actions\GetCategoriesAction;
 use gift\app\actions\GetHomePageAction;
 use gift\app\actions\GetPrestationAction;
+use gift\app\actions\DisplayListBoxAction;
+use gift\app\actions\GetBoxToAddPresta;
 use gift\app\actions\LoginFormAction;
 use gift\app\actions\LoginProcessAction;
 use gift\app\actions\LogoutProcessAction;
@@ -62,7 +63,7 @@ return function (Slim\App $app): void {
     $app->get("/box/default[/]", \gift\app\actions\GetBoxDefaultAction::class)->setName('boxDefault');
 
     // Lien d'accès à une box
-    $app->get('/box/view/public/{token}[/]', GetBoxFinieAction::class)->setName('boxFinieView');
+    $app->get('/box/view/public/{token}[/]', DisplayBoxAction::class)->setName('boxView');
 
     // afficher les prestations d'une catégorie
     $app->get('/categorie/{id}/prestations[/]', DisplayCatPrestationsAction::class)->setName('catPresta');
@@ -73,11 +74,14 @@ return function (Slim\App $app): void {
     // crée une catégorie
     $app->post('/new/categorie[/]', CreateCategorieAction::class)->setName('createCat');
 
+    // Demande dans quelle box on ajoute
+    $app->post('/box/attach/[/]', GetBoxToAddPresta::class)->setName('takeBox');
+
     // ajoute une prestation à une box
-    $app->post('/box/attach/prestation[/]', AddPrestaToBoxAction::class)->setName('prestaBox');
+    $app->post('/box/attach/prestation[/]', AddPrestaToBoxAction::class)->setName('AddPrestaToBox');
 
     // affiche la box courante
-    $app->get('/box/view/current[/]', DisplayBoxAction::class)->setName('displayCurrentBox');
+    $app->get('/box/view/public[/]', DisplayListBoxAction::class)->setName('displayBox');
 
     $app->get('/box/validate/current[/]', ValiderBoxAction::class)->setName('validateBox');
 

@@ -9,6 +9,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpBadRequestException;
 use Slim\Exception\HttpNotFoundException;
 use Slim\Views\Twig;
+use gift\app\models\Box;
 
 // affiche une prestation
 class GetPrestationAction extends AbstractAction {
@@ -35,20 +36,17 @@ class GetPrestationAction extends AbstractAction {
             throw new HttpNotFoundException($request, 'La prestation n\'existe pas');
         }
 
-        // récupère l'id de la box courante
-        $currentBoxId = $_SESSION['currentBox'] ?? null;
-
-        // done un statut par défaut
-        $boxStatus = 4;
-
-        // récupère le statut de la box
-        if ($currentBoxId !== null) {
-            $box = BoxService::getBoxById($currentBoxId);
-            $boxStatus = $box->statut;
+        $currentBoxId = false;
+        // on vérifie que l'utilisateur a au - une box
+        if (isset($_SESSION['user'])) {
+            $box = Box::where("author_id", $_SESSION['user']->email)->first();
+            if ($box!=null){
+                $currentBoxId = true;
+            }
         }
 
         // charge la vue depuis la template Twig et la retourne
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'prestation.twig', ['presta' => $prestation[0], 'box_id'=>$currentBoxId, 'box_status'=> $boxStatus]);
+        return $view->render($response, 'prestation.twig', ['presta' => $prestation[0], 'box_id'=>$currentBoxId]);
     }
 }

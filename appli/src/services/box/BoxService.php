@@ -133,8 +133,10 @@ class BoxService {
         // lui ajoute la prestation
         $presta = $box->prestation()->find($prestaId);
         $qty = $presta->pivot->quantite;
-        $box->prestation()->updateExistingPivot($presta, ['quantite' => $qty-1]);
-        self::delMontant($prestaId,$boxId);
+        if ($qty>0) {
+            $box->prestation()->updateExistingPivot($presta, ['quantite' => $qty - 1]);
+            self::delMontant($prestaId, $boxId);
+        }
     }
 
     private static function addMontant(string $prestaId, string $boxId){

@@ -7,27 +7,31 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpBadRequestException;
 use Slim\Views\Twig;
+use gift\app\models\Box;
 
 // permet l'affichage d'une box
-class DisplayBoxAction extends AbstractAction {
+class DisplayBoxAction extends AbstractAction
+{
 
     // méthode magique invoquée pour gérer l'action
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    {
         // récupère l'id de la box courante en session
-        $boxId = $_SESSION['currentBox'] ?? null;
+        $boxId = $args['token'];
 
         // s'il n'y a pas de box courante, lance une erreur
         if ($boxId === null) {
-            throw new HttpBadRequestException($request,"vous n'avez pas créé de Box, créez en une avant d'y accéder !");
+            throw new HttpBadRequestException($request, "Il n'y as pas d'id dans l'url");
         }
 
         // récupère la box
-        $box = BoxService::getBoxById($boxId);
-        if (!isset($_SESSION["user"]->email) || $_SESSION["user"]->email!=$box->author_id){
-            if ($box->status<3){
-                throw new HttpBadRequestException($request,"Vous ne pouvez pas encore acceder à cette box");
+        $box = Box::where("token",$boxId)->first();
+        if (!isset($_SESSION["user"]->email) || $_SESSION["user"]->email != $box->author_id) {
+            if ($box->statut < 3) {
+                throw new HttpBadRequestException($request, "Vous ne pouvez pas encore acceder à cette box");
             }
         }
+
         // récupère les prestations
         $prestations = $box->prestation()->withPivot('quantite')->get();
 
@@ -40,6 +44,11 @@ class DisplayBoxAction extends AbstractAction {
 
         // charge la vue depuis la template Twig et la retourne
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'afficherBox.twig', ['box' => $box, 'prestations' => $prestations, 'canValidate'=>$canValidate]);
+
+        if ($box->statut < 3) {
+            return $view->render($response, 'afficherBox.twig', ['box' => $box, 'prestations' => $prestations]);
+        } else {
+            return $view->render($response, 'afficherBoxFinie.twig', ['box' => $box, 'prestations' => $prestations]);
+        }
     }
 }
