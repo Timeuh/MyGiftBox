@@ -1,0 +1,14 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <h1>Mes box</h1>
+    <ul>
+        {% for b in box %}
+        <li>
+            <h3><a href="{{ url_for('boxView', {'token': b.token}) }}" >{{ b.libelle }}</a></h3>
+            <h3>{{ b.description }}</h3>
+            <h3>{{ b.montant }}€</h3>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
