@@ -83,4 +83,21 @@ class BoxService {
         // vérifie s'il y a au moins 2 catégories différentes et au moins 2 prestations
         return ($catNumber >= 2 && sizeof($prestations) >= 2);
     }
+
+    // passe une box à l'état validé
+    public static function validateBox(int $boxId) : bool {
+        // retrouve la box en bd
+        $box = Box::find($boxId);
+
+        // si elle n'existe pas, retourne false
+        if ($box === null){
+            return false;
+        }
+
+        // change son statut
+        $box->statut = Status::VALIDATED;
+
+        // sauvegarde la modification
+        return $box->save();
+    }
 }
