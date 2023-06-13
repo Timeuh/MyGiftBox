@@ -25,7 +25,7 @@ Projet MyGiftBox du semestre 4
 ## 8 Affichage d'un coffret
 ✅ Réalisé par Timothée Brindejonc
 ## 9 Validation d'un coffret
-❌ Fonctionnalité non réalisée
+✅ Réalisé par Timothée Brindejonc
 ## 10 Paiement d'un coffret
 ❌ Fonctionnalité non réalisée
 ## 11 Modification d'un coffret : suppression de prestations
