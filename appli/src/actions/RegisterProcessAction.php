@@ -18,9 +18,18 @@ class RegisterProcessAction extends AbstractAction {
         $params = $request->getParsedBody();
 
         $user = Authentification::inscription($params['email'], $params['password'], $params['prenom'], $params['nom']);
-        echo $user->prenom." a été créé";
 
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'homePage.twig');
+
+        if (isset($_SESSION["user"])){
+            $log = true;
+            $prenom = $_SESSION["user"]->prenom;
+            $nom = $_SESSION["user"]->nom;
+        } else {
+            $log = false;
+            $prenom = "";
+            $nom = "";
+        }
+        return $view->render($response, 'homePage.twig', ["log" => $log, "prenom" => $prenom, "nom"=>$nom]);
     }
 }
