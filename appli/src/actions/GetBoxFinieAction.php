@@ -12,16 +12,16 @@ class GetBoxFinieAction extends AbstractAction{
     // méthode magique invoquée pour gérer l'action
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
 
-        // si l'id n'est pas spécifié
-        if (!isset($args['id'])) {
+        // si le token n'est pas spécifié
+        if (!isset($args['token'])) {
             // lance une erreur 400
-            throw new HttpBadRequestException($request, 'Il faut spécifier un id');
+            throw new HttpBadRequestException($request, 'Il faut spécifier un token');
         }
-        $id = $args['id'];
+        $token = $args['token'];
 
         // récupère les prestations et la catégorie
-        $row = Box::where("id", $id)->where("statut", 3);
-        if (!$row->first()) throw new HttpBadRequestException($request, 'Cet id n\'existe pas ou n\'est pas prêt');
+        $row = Box::where("token", $token)->where("statut", '>=',3);
+        if (!$row->first()) throw new HttpBadRequestException($request, 'Cet token n\'existe pas ou n\'est pas prêt');
         $box = $row->first();
         $prestations = $box->prestation()->get();
 
