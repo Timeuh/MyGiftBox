@@ -41,10 +41,15 @@ class DisplayBoxAction extends AbstractAction
         // charge la vue depuis la template Twig et la retourne
         $view = Twig::fromRequest($request);
 
-        if ($box->statut < 2) {
-            return $view->render($response, 'afficherBox.twig', ['box' => $box, 'prestations' => $prestations, 'canValidate' => $canValidate]);
-        } else {
-            return $view->render($response, 'afficherBoxFinie.twig', ['box' => $box, 'prestations' => $prestations]);
+        switch ($box->statut){
+            case 1:
+                return $view->render($response, 'afficherBox.twig', ['box' => $box, 'prestations' => $prestations, 'canValidate' => $canValidate]);
+
+            case 2:
+                return $view->render($response, 'afficherBoxAPayer.twig', ['box' => $box, 'prestations' => $prestations]);
+
+            default:
+                return $view->render($response, 'afficherBoxFinie.twig', ['box' => $box, 'prestations' => $prestations]);
         }
     }
 }
