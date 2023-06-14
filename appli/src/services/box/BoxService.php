@@ -116,7 +116,7 @@ class BoxService {
         // lui ajoute la prestation
         $box->prestation()->attach($prestaId, ['quantite' => $quantite, 'date' => new DateTime('now')]);
         // sauvegarde la box
-        self::addMontant($prestaId,$boxId);
+        self::addMontant($prestaId,$boxId, $quantite);
         return $box->save();
     }
 
@@ -190,11 +190,11 @@ class BoxService {
         }
     }
 
-    private static function addMontant(string $prestaId, string $boxId){
+    private static function addMontant(string $prestaId, string $boxId, int $quantite = 1){
         $box = Box::find($boxId);
         $presta = Prestation::find($prestaId);
 
-        $box->montant += $presta->tarif;
+        $box->montant += ($presta->tarif * $quantite);
         $box->save();
     }
 
