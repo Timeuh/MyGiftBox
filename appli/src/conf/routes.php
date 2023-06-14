@@ -31,9 +31,6 @@ return function (Slim\App $app): void {
     //Affiche le get de la home page
     $app->get('[/]', GetHomePageAction::class)->setName('homePage');
 
-    //affiche le post de la home page
-    $app->post('[/]', GetHomePageAction::class)->setName('homePage');
-
     //Affiche mkrg form
     $app->get('/login[/]', LoginFormAction::class)->setName('login');
 
