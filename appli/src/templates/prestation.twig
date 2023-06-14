@@ -11,6 +11,9 @@
     <form method="post" action="{{ url_for('takeBox') }}">
         <input type="hidden" name="presta" value="{{ presta.id }}">
         <input type="hidden" name="box" value="{{ box_id }}">
+        <label>Quantité :
+            <input type="number" name="quantite" value=1 />
+        </label>
         <button type="submit">+</button>
     </form>
     {% endif %}
