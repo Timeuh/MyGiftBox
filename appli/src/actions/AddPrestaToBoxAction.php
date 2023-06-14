@@ -20,7 +20,7 @@ class AddPrestaToBoxAction extends AbstractAction {
         $prestations = $box->prestation()->find($params['presta']);
 
         if ($prestations == null) {
-            BoxService::addPrestation($params['presta'], $params['box']);
+            BoxService::addPrestation($params['presta'], $params['box'], $params['quantite']);
         }else{
             BoxService::addQuantite($params['presta'], $params['box']);
         }
