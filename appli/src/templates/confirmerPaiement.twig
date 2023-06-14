@@ -1,0 +1,15 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <h1>Box {{ box.libelle }}</h1>
+    <p>{{ box.description }}</p>
+    <h2>Montant {{ box.montant }}€</h2>
+    <ul>
+        {% for pres in prestations %}
+            <li>
+                <h3>{{ pres.libelle }} : {{ pres.tarif }}€. Quantité : {{ pres.pivot.quantite}}</h3>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('confirmerPaiement', {'token': box.token}) }}">Confirmer le paiement</a>
+{% endblock %}
