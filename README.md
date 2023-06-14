@@ -33,19 +33,19 @@ Projet MyGiftBox du semestre 4
 ## 12 Modification d'un coffret : modification des quantités
 ✅ Réalisé par Jules Steelandt
 ## 13 Génération de l'URL d'accès
-✅ Fonctionnalité réalisée par Nicolas Bernardet
+✅ réalisée par Nicolas Bernardet
 ## 14 Accès au coffret
-✅ Fonctionnalité réalisée par Nicolas Bernardet
+✅ réalisée par Nicolas Bernardet
 ## 15 Signin
-✅ Fonctionnalité réalisée par Nicolas Bernardet
+✅ réalisée par Nicolas Bernardet
 ## 16 Register
-✅ Fonctionnalité réalisée par Nicolas Bernardet
+✅ réalisée par Nicolas Bernardet
 ## 17 Accéder à ses coffrets
 ✅ Fonctionnalité réalisée par Jules Steelandt
 ## 18 Afficher les box prédéfinies
-✅ Fonctionnalité réalisée par Nicolas Bernardet
+✅ réalisée par Nicolas Bernardet
 ## 19 Créer un coffret prérempli à partir d'une box
-❌ Fonctionnalité non réalisée
+✅ réalisée par Nicolas Bernardet
 ## 20 Créer un coffret prérempli à partir d'une box affichée
 ❌ Fonctionnalité non réalisée
 ## 21 Api : liste des prestations

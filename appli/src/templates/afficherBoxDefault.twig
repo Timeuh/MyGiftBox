@@ -5,22 +5,9 @@
     <h1>Box {{ box.libelle }}</h1>
     <p>{{ box.description }}</p>
     <h2>Montant {{ box.montant }}€</h2>
-    <ul>
-        {% for pres in box.pivot.prestations %}
-            <li>
-                <h3>{{ pres.libelle }} : {{ pres.tarif }}€. Quantité : {{ pres.pivot.quantite}}</h3>
-                <form method="post" action="{{ url_for('prestaBox') }}">
-                    <input type="hidden" name="presta" value="{{ pres.id }}">
-                    <input type="hidden" name="box" value="{{ box.id }}">
-                    <button type="submit">+</button>
-                </form>
-                <form method="post" action="{{ url_for('delPrestaBox') }}">
-                    <input type="hidden" name="presta" value="{{ pres.id }}">
-                    <input type="hidden" name="box" value="{{ box.id }}">
-                    <button type="submit">-</button>
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
+        <form method="post" action="{{ url_for('boxDefaultForm') }}">
+            <input type="hidden" name="id" value="{{ box.id }}">
+            <button type="submit">Prendre cet template !</button>
+        </form>
     {% endfor %}
 {% endblock %}
