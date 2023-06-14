@@ -12,6 +12,8 @@
         {% for pres in prestations %}
             <li>
                 <h3>{{ pres.libelle }} : {{ pres.tarif }}€. Quantité : {{ pres.pivot.quantite}}</h3>
+                <h3>Catégorie : {{ pres.categorie.libelle }}</h3>
+                <img src="{{ base_path() }}/img/{{ pres.img }}" alt="{{ pres.img }}" width="100" height="100">
             </li>
         {% endfor %}
     </ul>
