@@ -4,7 +4,11 @@
     <h1>Toutes les prestations de la catégorie {{ cat.libelle }}</h1>
     <ul>
         {% for presta in prestations %}
-            <li><a href="{{ base_path() }}/prestation?id={{ presta.id }}">{{ presta.libelle }}</a></li>
+            <li>
+                <a href="{{ base_path() }}/prestation?id={{ presta.id }}">{{ presta.libelle }}</a>
+                <span>{{ presta.tarif }}€</span>
+                <img src="{{ base_path() }}/img/{{ presta.img }}" alt="{{ presta.img }}" width="100" height="100">
+            </li>
         {% endfor %}
     </ul>
     <a href="{{ url_for('catById', {'id': cat.id}) }}">Retour</a>

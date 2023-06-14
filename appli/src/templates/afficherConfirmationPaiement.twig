@@ -1,0 +1,11 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <h1>Paiement de votre box</h1>
+    {% if success %}
+        <h2>Vous avez payé votre box !</h2>
+    {% else %}
+        <h2>Une erreur est survenue au paiement de votre box, veuillez réessayer !</h2>
+    {% endif %}
+    <a href="{{ url_for('displayBox') }}">Voir mes box</a>
+{% endblock %}
