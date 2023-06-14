@@ -3,6 +3,7 @@
 use gift\app\actions\AddPrestaToBoxAction;
 use gift\app\actions\BoxFormAction;
 use gift\app\actions\CategorieFormAction;
+use gift\app\actions\ConfirmerPaiementAction;
 use gift\app\actions\CreateBoxAction;
 use gift\app\actions\CreateCategorieAction;
 use gift\app\actions\DelPrestaBox;
@@ -19,6 +20,7 @@ use gift\app\actions\GetPrestationAction;
 use gift\app\actions\LoginFormAction;
 use gift\app\actions\LoginProcessAction;
 use gift\app\actions\LogoutProcessAction;
+use gift\app\actions\PayerBoxAction;
 use gift\app\actions\RegisterFormAction;
 use gift\app\actions\RegisterProcessAction;
 use gift\app\actions\ValiderBoxAction;
@@ -82,7 +84,7 @@ return function (Slim\App $app): void {
     // ajoute une prestation à une box
     $app->post('/box/attach/prestation[/]', AddPrestaToBoxAction::class)->setName('AddPrestaToBox');
 
-    // affiche la box courante
+    // affiche la liste des box de l'utilisateur
     $app->get('/box/view/public[/]', DisplayListBoxAction::class)->setName('displayBox');
 
     // supprime une prestation de la box
@@ -90,4 +92,10 @@ return function (Slim\App $app): void {
 
     // valide une box
     $app->get('/box/validate/{token}[/]', ValiderBoxAction::class)->setName('validateBox');
+
+    // payer une box
+    $app->get('/box/pay/{token}[/]', PayerBoxAction::class)->setName('payerBox');
+
+    // confirmer le paiement d'une box
+    $app->get('/box/pay/confirm/{token}[/]', ConfirmerPaiementAction::class)->setName('confirmerPaiement');
 };
