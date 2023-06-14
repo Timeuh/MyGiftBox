@@ -10,6 +10,7 @@
                 {% for b in box %}
                     <li>
                         <button name='box' type="submit" value="{{ b.id }}">{{ b.libelle }}</button>
+                        <input type="hidden" name="quantite" value="{{ quantite }}">
                     </li>
                 {% endfor %}
             </ul>
