@@ -24,6 +24,11 @@
                     <input type="hidden" name="box" value="{{ box.id }}">
                     <button type="submit">-</button>
                 </form>
+                <form method="post" action="{{ url_for('supprPrestaBox') }}">
+                    <input type="hidden" name="presta" value="{{ pres.id }}">
+                    <input type="hidden" name="box" value="{{ box.id }}">
+                    <button type="submit">supprimer</button>
+                </form>
             </li>
         {% endfor %}
     </ul>

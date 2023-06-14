@@ -24,6 +24,7 @@ use gift\app\actions\PayerBoxAction;
 use gift\app\actions\RegisterFormAction;
 use gift\app\actions\RegisterProcessAction;
 use gift\app\actions\ValiderBoxAction;
+use gift\app\actions\SupprPrestaBox;
 
 return function (Slim\App $app): void {
 
@@ -87,8 +88,11 @@ return function (Slim\App $app): void {
     // affiche la liste des box de l'utilisateur
     $app->get('/box/view/public[/]', DisplayListBoxAction::class)->setName('displayBox');
 
-    // supprime une prestation de la box
+    // retire quantité de la box
     $app->post('/box/del/prestation[/]', DelPrestaBox::class)->setName('delPrestaBox');
+
+    // supprime une prestation de la box
+    $app->post('/box/suppr/prestation[/]', SupprPrestaBox::class)->setName('supprPrestaBox');
 
     // valide une box
     $app->get('/box/validate/{token}[/]', ValiderBoxAction::class)->setName('validateBox');
