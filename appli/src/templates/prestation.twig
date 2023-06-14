@@ -3,7 +3,7 @@
 {% block content %}
     <h1>{{ cat }}</h1>
     <h2>{{ presta.libelle }}</h2>
-    <img src="{{ base_path() }}/img/{{ presta.img }}"/>
+    <img src="{{ base_path() }}/img/{{ presta.img }}" width="200" height="200"/>
     <p>{{ presta.description }}</p>
     {% if presta.unite != null %}
     <p>{{ presta.unite }}</p>
