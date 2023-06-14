@@ -24,6 +24,6 @@ class GetBoxToAddPresta extends AbstractAction {
 
         // charge la vue depuis la template Twig et la retourne
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'afficherListBoxAddPresta.twig', ['box' => $box, 'presta'=>$params['presta']]);
+        return $view->render($response, 'afficherListBoxAddPresta.twig', ['box' => $box, 'presta'=>$params['presta'], 'quantite'=>$params['quantite']]);
     }
 }

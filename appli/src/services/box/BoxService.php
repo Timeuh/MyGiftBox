@@ -105,11 +105,16 @@ class BoxService {
     }
 
     // ajoute une prestation à une box
-    public static function addPrestation(string $prestaId, string $boxId) : bool {
+    public static function addPrestation(string $prestaId, string $boxId, int $quantite) : bool {
+        // met la quantité à 1 si elle est négative
+        if ($quantite <= 0) {
+            $quantite = 1;
+        }
+
         // récupère la box courante
         $box = Box::find($boxId);
         // lui ajoute la prestation
-        $box->prestation()->attach($prestaId, ['quantite' => 1, 'date' => new DateTime('now')]);
+        $box->prestation()->attach($prestaId, ['quantite' => $quantite, 'date' => new DateTime('now')]);
         // sauvegarde la box
         self::addMontant($prestaId,$boxId);
         return $box->save();
