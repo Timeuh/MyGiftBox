@@ -207,4 +207,16 @@ class BoxService {
         $base64 = strtr($base64, '+/', '-_');
         return rtrim($base64, '=');
     }
+
+    // récupère une box avec son token
+    public static function getBoxByToken(string $boxToken) : Box {
+        return Box::where('token', $boxToken)->first();
+    }
+
+    // confirme le paiement d'une box et change son statut
+    public static function confirmerPaiement(string $boxToken) : bool {
+        $box = Box::where('token', $boxToken)->first();
+        $box->statut = Status::PAID;
+        return $box->save();
+    }
 }

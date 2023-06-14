@@ -27,7 +27,7 @@ Projet MyGiftBox du semestre 4
 ## 9 Validation d'un coffret
 ✅ Réalisé par Timothée Brindejonc
 ## 10 Paiement d'un coffret
-❌ Fonctionnalité non réalisée
+✅ Réalisé par Timothée Brindejonc
 ## 11 Modification d'un coffret : suppression de prestations
 ✅ Réalisé par Jules Steelandt
 ## 12 Modification d'un coffret : modification des quantités

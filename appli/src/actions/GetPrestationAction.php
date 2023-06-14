@@ -35,6 +35,8 @@ class GetPrestationAction extends AbstractAction {
             throw new HttpNotFoundException($request, 'La prestation n\'existe pas');
         }
 
+        $cat = $prestation[0]->categorie->libelle;
+
         $currentBoxId = false;
         // on vérifie que l'utilisateur a au - une box
         if (isset($_SESSION['user'])) {
@@ -46,6 +48,6 @@ class GetPrestationAction extends AbstractAction {
 
         // charge la vue depuis la template Twig et la retourne
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'prestation.twig', ['presta' => $prestation[0], 'box_id'=>$currentBoxId]);
+        return $view->render($response, 'prestation.twig', ['presta' => $prestation[0], 'box_id'=>$currentBoxId, 'cat'=>$cat]);
     }
 }

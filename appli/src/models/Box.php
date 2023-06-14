@@ -26,4 +26,5 @@ enum Status
 {
     const CREATED = 1;
     const VALIDATED = 2;
+    const PAID = 3;
 }

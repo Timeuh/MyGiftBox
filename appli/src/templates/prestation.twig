@@ -1,12 +1,18 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>{{ presta.libelle }}</h1>
+    <h1>{{ cat }}</h1>
+    <h2>{{ presta.libelle }}</h2>
+    <img src="{{ base_path() }}/img/{{ presta.img }}" width="200" height="200"/>
     <p>{{ presta.description }}</p>
-    {% if box_id is null %}
-        <h2>Pour ajouter cette prestation à une box, créez-en une !</h2>
+    {% if presta.unite != null %}
+    <p>{{ presta.unite }}</p>
+    {% endif %}
+    <p>{{ presta.tarif }}€</p>
+    {% if box_id == false %}
+        <h3>Pour ajouter cette prestation à une box, créez-en une !</h3>
     {% elseif box_status >=2 %}
-        <h2>Votre box est validée, vous ne pouvez plus y ajouter de prestation !</h2>
+        <h3>Votre box est validée, vous ne pouvez plus y ajouter de prestation !</h3>
     {% else %}
     <form method="post" action="{{ url_for('takeBox') }}">
         <input type="hidden" name="presta" value="{{ presta.id }}">
