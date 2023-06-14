@@ -214,7 +214,11 @@ class BoxService
         if (!$suppr) {
             $box->montant -= $presta->tarif;
         } else {
-            $box->montant = 0;
+            $pivotData = $box->prestation()->where('presta_id', $prestaId)->first();
+            if ($pivotData != null) {
+                $qty = $pivotData->pivot->quantite;
+                $box->montant -= ($presta->tarif) * $qty;
+            }
         }
         $box->save();
     }
