@@ -67,6 +67,10 @@ return function (Slim\App $app): void {
     //Afficher box par défaut
     $app->get("/box/default[/]", GetBoxDefaultAction::class)->setName('boxDefault');
 
+
+    $app->post("/box/default/useTemplate[/]", \gift\app\actions\BoxDefaultFormAction::class)->setName('boxDefaultForm');
+    $app->post("/box/default/useTemplate/form[/]", \gift\app\actions\CreateBoxDefaultAction::class)->setName('createBoxDefault');
+
     // Lien d'accès à une box
     $app->get('/box/view/public/{token}[/]', DisplayBoxAction::class)->setName('boxView');
 

@@ -58,6 +58,52 @@ class BoxService {
         return $box->save();
     }
 
+    public static function createEmptyBoxReturnId(array $attributes) {
+        // récupère les champs entrés par l'utilisateur
+        $libelle = $attributes['libelle'];
+        $description = $attributes['description'];
+        $messageCadeau = $attributes['message_cadeau'];
+
+        // les filtre, puis, s'ils ne correspondent pas, lance une erreur
+        if ($libelle !== filter_var($libelle, FILTER_UNSAFE_RAW) || $description !== filter_var($description, FILTER_UNSAFE_RAW)
+            || $messageCadeau !== filter_var($messageCadeau, FILTER_UNSAFE_RAW)){
+            throw new Exception('Les champs entrés ne sont pas valides !');
+        }
+
+        // les filtre, puis, s'ils ne correspondent pas, lance une erreur
+        if (!isset($_SESSION["user"]->email)){
+            throw new Exception('Il faut etre connecté pour créer une box');
+        }
+
+        // crée une box
+        $box = new Box();
+
+        // si la box est un cadeau, initialise les champs correspondants
+        if (isset($attributes['cadeau']) &&  $attributes['cadeau'] === 'on') {
+            $box->kdo = true;
+            $box->message_kdo = $attributes['message_cadeau'];
+        } else {
+            $box->kdo = false;
+        }
+
+        // remplit les autres champs
+        $box->libelle = $libelle;
+        $box->author_id = $_SESSION["user"]->email;
+        $box->description = $description;
+        $box->montant = 0;
+        $idAlea = Uuid::uuid4()->toString();
+        $box->id = $idAlea;
+        $box->token = self::generateToken();
+        $box->statut = Status::CREATED;
+
+        // sauvegarde l'id de la box en session
+        $_SESSION['currentBox'] = $box->id;
+
+        // crée la box
+        $box->save();
+        return $idAlea;
+    }
+
     // ajoute une prestation à une box
     public static function addPrestation(string $prestaId, string $boxId) : bool {
         // récupère la box courante
