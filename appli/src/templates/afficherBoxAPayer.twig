@@ -1,0 +1,19 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <h1>Box {{ box.libelle }}</h1>
+    <p>{{ box.description }}</p>
+    <h2>Montant {{ box.montant }}€</h2>
+    <div>
+        <h1>Votre box est validée, il ne reste plus qu'à payer !</h1>
+        <a href="{{ url_for('payerBox', {'token': box.token}) }}">Payer ma box</a>
+    </div>
+    <ul>
+        {% for pres in prestations %}
+            <li>
+                <h3>{{ pres.libelle }} : {{ pres.tarif }}€. Quantité : {{ pres.pivot.quantite}}</h3>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('categories') }}">Retour à l'accueil</a>
+{% endblock %}
