@@ -7,7 +7,7 @@
     <h2>Montant {{ box.montant }}€</h2>
         <form method="post" action="{{ url_for('boxDefaultForm') }}">
             <input type="hidden" name="id" value="{{ box.id }}">
-            <button type="submit">Prendre cet template !</button>
+            <button type="submit">Choisir cette box !</button>
         </form>
     {% endfor %}
 {% endblock %}

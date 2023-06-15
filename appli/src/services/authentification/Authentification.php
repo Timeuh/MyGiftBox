@@ -2,8 +2,8 @@
 
 namespace gift\app\services\authentification;
 
+use Exception;
 use gift\app\models\User;
-use PHPUnit\Logging\Exception;
 
 class Authentification
 {
@@ -23,13 +23,21 @@ class Authentification
         }
     }
 
-    static function inscription($email, $mdp, $prenom, $nom)
+    static function inscription($email, $mdp, $prenom, $nom) : void
     {
+        // vérifie si l'utilisateur existe déjà
         $row = User::where('email', $email);
-        if ($row->first()) return new Exception("Email déjà utilisé");
-        if (!self::checkPassword($mdp)) return new Exception("Mot de passe non valide");
-        if (!self::checkString($prenom)) return new Exception("Caractères invalides dans le prénom");
-        if (!self::checkString($nom)) return new Exception("Caractères invalides dans le nom");
+        if ($row->first()) throw new Exception("Cet email est déjà utilisé");
+
+        // vérifie si le mot de passe est assez fort
+        if (!self::checkPassword($mdp)) throw new Exception("Mot de passe non valide : il doit avoir une longueur de 5, contenir
+            des minuscules, des majuscules et des chiffres");
+
+        // vérifie si le nom et prénom sont valides
+        if (!self::checkString($prenom)) throw new Exception("Caractères invalides dans le prénom");
+        if (!self::checkString($nom)) throw new Exception("Caractères invalides dans le nom");
+
+        // crée un nouvel utilisateur
         $hashPassword = password_hash($mdp, PASSWORD_BCRYPT);
         $newRow = new User();
         $newRow->email = $email;
@@ -38,9 +46,9 @@ class Authentification
         $newRow->nom = $nom;
         $newRow->save();
 
+        // l'enregistre en session
         $user = User::where('email', $email)->first();
         $_SESSION['user'] = $user;
-        return $user;
     }
 
     static function checkPassword($password) : bool

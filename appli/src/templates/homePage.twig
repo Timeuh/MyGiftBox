@@ -4,7 +4,7 @@
     <h1>Home Page</h1>
     {% if log %}
         <h1> Bienvenue {{ prenom }} {{ nom }}</h1>
-        <a href="{{ url_for('boxDefault') }}"> Voir les boxes par défauts</a>
+        <a href="{{ url_for('boxDefault') }}"> Voir les box par défaut</a>
         <a href="{{ url_for('logout') }}"> Déconnexion</a>
     {% else %}
         <a href="{{ url_for('login') }}">Connexion</a>
