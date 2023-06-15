@@ -30,7 +30,12 @@ class CreateBoxDefaultAction extends AbstractAction {
         CsrfService::check($token);
 
         // récupère l'id de la box à utiliser comme template
-        $idBoxDefault = $params['id'];
+        $idBoxDefault = $params['id'] ?? null;
+
+        // si on ne passe par le paramètre id, c'est qu'on passe par le paramètre template
+        if ($idBoxDefault === null){
+            $idBoxDefault = $params['template'];
+        }
 
         // crée la box
         $idBox = BoxService::createEmptyBoxReturnId($params);
