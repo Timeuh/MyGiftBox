@@ -244,4 +244,9 @@ class BoxService
         $box->statut = Status::PAID;
         return $box->save();
     }
+
+    // récupère les box de template
+    public static function getTemplateBoxes() {
+        return Box::where('statut', 6)->get();
+    }
 }
