@@ -5,7 +5,6 @@ namespace gift\app\actions;
 use gift\app\models\Box;
 use gift\app\services\box\BoxService;
 use gift\app\services\utils\CsrfService;
-use Illuminate\Support\Str;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpBadRequestException;
@@ -30,23 +29,30 @@ class CreateBoxDefaultAction extends AbstractAction {
         // vérifie le token
         CsrfService::check($token);
 
+        // récupère l'id de la box à utiliser comme template
         $idBoxDefault = $params['id'];
 
         // crée la box
         $idBox = BoxService::createEmptyBoxReturnId($params);
 
+        // récupère la box crée et celle template
         $box = Box::where("id", $idBox)->first();
         $defBox = Box::where("id", $idBoxDefault)->first();
 
-        if ($defBox === null) {
-            throw new \Exception("Box not found");
+        // si la box template n'existe pas, lance une exception
+        if (!$defBox) {
+            throw new HttpBadRequestException($request, "Erreur : La box template n'existe pas");
         }
 
+        // récupère les prestations de la template
         $prestaDefBox = $defBox->prestation()->get();
 
-        if ($prestaDefBox === null) {
-            throw new \Exception("Prestation not found for the default box");
+        // si la box template n'a pas de prestations, lance une exception
+        if (!$prestaDefBox) {
+            throw new HttpBadRequestException($request, "Erreur : Impossible de retrouver les prestations de la box template");
         }
+
+        // ajoute les prestations de la box template vers la nouvelle box
         foreach ($prestaDefBox as $pa){
             BoxService::addPrestation($pa->id, $idBox);
             for ($i = 0; $i < $defBox->prestation()->where("id", $pa->id)->first()->pivot->quantite; $i++) {
