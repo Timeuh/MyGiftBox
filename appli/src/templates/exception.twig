@@ -1,0 +1,19 @@
+<html lang="fr">
+<head>
+    <title>GiftBox : Erreur</title>
+    <link rel="stylesheet" href="{{ base_path() }}/style/main.css">
+</head>
+<body>
+<header>
+    <h1>Erreur de l'application MyGiftBox</h1>
+</header>
+<main>
+    <h1>L'application a rencontré un problème :</h1>
+    <p>{{ error }}</p>
+    <a href="{{ url_for('homePage') }}">Retour à l'accueil</a>
+</main>
+<footer>
+    <h3>Site créé par Nicolas Bernardet, Timothée Brindejonc et Jules Steelandt</h3>
+</footer>
+</body>
+</html>
