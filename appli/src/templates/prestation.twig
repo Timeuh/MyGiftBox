@@ -9,19 +9,18 @@
     <p>{{ presta.unite }}</p>
     {% endif %}
     <p>{{ presta.tarif }}€</p>
-    {% if box_id == false %}
-        <h3>Pour ajouter cette prestation à une box, créez-en une !</h3>
-    {% elseif box_status >=2 %}
-        <h3>Votre box est validée, vous ne pouvez plus y ajouter de prestation !</h3>
+    {% if hasBox %}
+        <form method="post" action="{{ url_for('takeBox') }}">
+            <input type="hidden" name="presta" value="{{ presta.id }}">
+            <input type="hidden" name="box" value="{{ box_id }}">
+            <label>Quantité :
+                <input type="number" name="quantite" value=1 />
+            </label>
+            <button type="submit">+</button>
+        </form>
     {% else %}
-    <form method="post" action="{{ url_for('takeBox') }}">
-        <input type="hidden" name="presta" value="{{ presta.id }}">
-        <input type="hidden" name="box" value="{{ box_id }}">
-        <label>Quantité :
-            <input type="number" name="quantite" value=1 />
-        </label>
-        <button type="submit">+</button>
-    </form>
+        <h1>Vous n'avez pas de box, ou toutes vont box sont déjà validées</h1>
+        <h2>Si vous voulez ajouter cette prestation à une box, créez-en une nouvelle !</h2>
     {% endif %}
     <a href="{{ url_for('categories') }}">Accueil</a>
 {% endblock %}
