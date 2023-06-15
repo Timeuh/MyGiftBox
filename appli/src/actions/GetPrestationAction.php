@@ -2,8 +2,8 @@
 
 namespace gift\app\actions;
 
-use gift\app\models\Box;
 use gift\app\services\prestations\PrestationsService;
+use gift\app\services\user\UserService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpBadRequestException;
@@ -35,19 +35,14 @@ class GetPrestationAction extends AbstractAction {
             throw new HttpNotFoundException($request, 'La prestation n\'existe pas');
         }
 
+        // récupère la catégorie de la prestation
         $cat = $prestation[0]->categorie->libelle;
 
-        $currentBoxId = false;
-        // on vérifie que l'utilisateur a au - une box
-        if (isset($_SESSION['user'])) {
-            $box = Box::where("author_id", $_SESSION['user']->email)->first();
-            if ($box!=null){
-                $currentBoxId = true;
-            }
-        }
+        // vérifie si l'utilisateur courant a des box modifiables
+        $hasEditableBoxes = UserService::checkUserHasEditableBox();
 
         // charge la vue depuis la template Twig et la retourne
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'prestation.twig', ['presta' => $prestation[0], 'box_id'=>$currentBoxId, 'cat'=>$cat]);
+        return $view->render($response, 'prestation.twig', ['presta' => $prestation[0], 'cat'=>$cat, 'hasBox' => $hasEditableBoxes]);
     }
 }
