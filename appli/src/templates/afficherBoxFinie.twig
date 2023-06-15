@@ -3,6 +3,10 @@
 {% block content %}
     <h1>Box {{ box.libelle }}</h1>
     <p>{{ box.description }}</p>
+    <div>
+        <h2>Voici le lien vers cette Box, vous pouvez le partager</h2>
+        <a href="{{ url_for('boxView', {'token': box.token}) }}">{{ url_for('boxView', {'token': box.token}) }}</a>
+    </div>
     {% if box.kdo %}
         <h2>{{ box.message_kdo }}</h2>
         {% for pres in box.prestation %}
