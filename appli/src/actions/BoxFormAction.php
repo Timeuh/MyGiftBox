@@ -2,6 +2,7 @@
 
 namespace gift\app\actions;
 
+use gift\app\services\box\BoxService;
 use gift\app\services\utils\CsrfService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -21,8 +22,11 @@ class BoxFormAction extends AbstractAction {
             throw new HttpBadRequestException($request, $csrf['message']);
         }
 
+        // récupère les box templates
+        $templatesBoxes = BoxService::getTemplateBoxes();
+
         // charge la vue depuis la template Twig et la retourne
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'boxForm.twig', ['csrf' => $csrf['token']]);
+        return $view->render($response, 'boxForm.twig', ['csrf' => $csrf['token'],'templates'=>$templatesBoxes]);
     }
 }

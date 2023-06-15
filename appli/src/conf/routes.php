@@ -1,10 +1,12 @@
 <?php
 
 use gift\app\actions\AddPrestaToBoxAction;
+use gift\app\actions\BoxDefaultFormAction;
 use gift\app\actions\BoxFormAction;
 use gift\app\actions\CategorieFormAction;
 use gift\app\actions\ConfirmerPaiementAction;
 use gift\app\actions\CreateBoxAction;
+use gift\app\actions\CreateBoxDefaultAction;
 use gift\app\actions\CreateCategorieAction;
 use gift\app\actions\DelPrestaBox;
 use gift\app\actions\DisplayBoxAction;
@@ -23,8 +25,8 @@ use gift\app\actions\LogoutProcessAction;
 use gift\app\actions\PayerBoxAction;
 use gift\app\actions\RegisterFormAction;
 use gift\app\actions\RegisterProcessAction;
-use gift\app\actions\ValiderBoxAction;
 use gift\app\actions\SupprPrestaBox;
+use gift\app\actions\ValiderBoxAction;
 
 return function (Slim\App $app): void {
 
@@ -64,9 +66,11 @@ return function (Slim\App $app): void {
     //Afficher box par défaut
     $app->get("/box/default[/]", GetBoxDefaultAction::class)->setName('boxDefault');
 
+    // affiche le formulaire de création de box à partir d'une template
+    $app->post("/box/default/useTemplate[/]", BoxDefaultFormAction::class)->setName('boxDefaultForm');
 
-    $app->post("/box/default/useTemplate[/]", \gift\app\actions\BoxDefaultFormAction::class)->setName('boxDefaultForm');
-    $app->post("/box/default/useTemplate/form[/]", \gift\app\actions\CreateBoxDefaultAction::class)->setName('createBoxDefault');
+    // crée la box à partir de la template
+    $app->post("/box/default/useTemplate/form[/]", CreateBoxDefaultAction::class)->setName('createBoxDefault');
 
     // Lien d'accès à une box
     $app->get('/box/view/public/{token}[/]', DisplayBoxAction::class)->setName('boxView');

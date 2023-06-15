@@ -2,7 +2,14 @@
 
 {% block content %}
     <h1>Créer une box</h1>
+    <h2>Vous pouvez également choisir une box de template</h2>
     <form action="{{ url_for('createBox') }}" method="post">
+        <select name="template" id="template">
+            <option value="default" selected>Pas de template</option>
+            {% for tem in templates %}
+                <option value="{{ tem.id }}">{{ tem.libelle }}</option>
+            {% endfor %}
+        </select>
         <label for="libelle">Libellé</label>
         <input type="text" name="libelle" id="libelle" required>
         <label for="description">Description</label>
