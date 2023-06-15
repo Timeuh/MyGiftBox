@@ -45,9 +45,9 @@ Projet MyGiftBox du semestre 4
 ## 18 Afficher les box prédéfinies
 ✅ réalisée par Nicolas Bernardet
 ## 19 Créer un coffret prérempli à partir d'une box
-✅ réalisée par Nicolas Bernardet
-## 20 Créer un coffret prérempli à partir d'une box affichée
 ❌ Fonctionnalité non réalisée
+## 20 Créer un coffret prérempli à partir d'une box affichée
+✅ réalisée par Nicolas Bernardet
 ## 21 Api : liste des prestations
 ✅ Réalisé par Jules Steelandt
 ## 22 Api : liste des catégories
