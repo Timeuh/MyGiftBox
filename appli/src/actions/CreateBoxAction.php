@@ -2,13 +2,12 @@
 
 namespace gift\app\actions;
 
-use gift\app\models\Box;
 use gift\app\services\box\BoxService;
 use gift\app\services\utils\CsrfService;
-use Illuminate\Support\Str;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Routing\RouteContext;
 use Slim\Views\Twig;
 
 // crée une nouvelle box
@@ -18,6 +17,17 @@ class CreateBoxAction extends AbstractAction {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
         // récupère les paramètres du formulaire
         $params = $request->getParsedBody();
+
+        // si l'utilisateur a choisi une template de box
+        if ($params['template'] !== 'default'){
+            // charge le lien vers la création de box via template
+            $routeContext = RouteContext::fromRequest($request);
+            $routeParser = $routeContext->getRouteParser();
+            $url = $routeParser->urlFor('createBoxDefault');
+
+            // retourne la redirection
+            return $response->withStatus(307)->withHeader('Location', $url);
+        }
 
         // récupère le token csrf
         $token = $params['csrf'] ?? null;
