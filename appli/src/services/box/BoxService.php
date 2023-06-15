@@ -107,7 +107,7 @@ class BoxService
     }
 
     // ajoute une prestation à une box
-    public static function addPrestation(string $prestaId, string $boxId, int $quantite) : bool {
+    public static function addPrestation(string $prestaId, string $boxId, int $quantite = 1) : bool {
         // met la quantité à 1 si elle est négative
         if ($quantite <= 0) {
             $quantite = 1;
