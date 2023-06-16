@@ -7,7 +7,8 @@ module.exports = {
     extend: {
       colors: {
         'green-tea': '#BEEDAA',
-        'dark-tea': '#113E06'
+        'dark-tea': '#113E06',
+        'tea-green': '#D5FFD9'
       }
     },
   },
