@@ -11,16 +11,16 @@
         <a href="{{ url_for('newBox') }}" class="nav-link">+Box</a>
         <a href="{{ url_for('displayBox') }}" class="nav-link">Mes Box</a>
     </nav>
-    <header>
-        <h1>Bienvenue sur MyGiftBox</h1>
-    </header>
-
     <main>
         {% block content %}
         {% endblock %}
     </main>
-    <footer>
-        <h3>Site créé par Nicolas Bernardet, Timothée Brindejonc et Jules Steelandt</h3>
+    <footer class="w-full h-10 bg-dark-tea absolute bottom-0">
+        <h3 class="text-green-tea pt-2 ps-2">Site créé par
+            <span class="font-bold text-tea-green">Nicolas Bernardet</span>,
+            <span class="font-bold text-tea-green">Timothée Brindejonc</span> et
+            <span class="font-bold text-tea-green">Jules Steelandt</span>
+        </h3>
     </footer>
 </body>
 </html>
