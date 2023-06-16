@@ -18,12 +18,11 @@ class DisplayCatPrestationsAction extends AbstractAction{
         }
 
         // récupère les prestations et la catégorie
-        $prestations = PrestationsService::getPrestationsByCategorie($args['id']);
+        $prestations = PrestationsService::getPrestationsByCategorie($args['id'], $args['order']);
         $categorie = PrestationsService::getCategorieById($args['id'])[0];
 
         // charge la vue depuis la template Twig et la retourne
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'categoriePrestations.twig', ['cat' => $categorie,
-            'prestations' => $prestations]);
+        return $view->render($response, 'categoriePrestations.twig', ['cat' => $categorie, 'prestations' => $prestations]);
     }
 }
