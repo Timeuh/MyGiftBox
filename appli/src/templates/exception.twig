@@ -2,18 +2,23 @@
 <head>
     <title>GiftBox : Erreur</title>
     <link rel="stylesheet" href="{{ base_path() }}/style/output.css">
+    <link rel="icon" href="{{ base_path() }}/icon/icon.png">
 </head>
-<body>
+<body class="h-screen w-full flex flex-col justify-center items-center bg-dark-tea text-green-tea space-y-12">
 <header>
-    <h1>Erreur de l'application MyGiftBox</h1>
+    <h1 class="text-6xl font-bold text-error">Erreur de l'application MyGiftBox</h1>
 </header>
-<main>
-    <h1>L'application a rencontré un problème :</h1>
-    <p>{{ error }}</p>
-    <a href="{{ url_for('homePage') }}">Retour à l'accueil</a>
+<main class="flex flex-col h-1/4 w-full justify-between items-center">
+    <h1 class="text-4xl">L'application a rencontré un problème :</h1>
+    <p class="text-error text-3xl">{{ error }}</p>
+    <a href="{{ url_for('homePage') }}" class="text-2xl nav-link h-10 pt-0">Retour à l'accueil</a>
 </main>
-<footer>
-    <h3>Site créé par Nicolas Bernardet, Timothée Brindejonc et Jules Steelandt</h3>
+<footer class="w-full h-10 bg-dark-tea absolute bottom-0">
+    <h3 class="text-green-tea pt-2 ps-2">Site créé par
+        <span class="font-bold text-tea-green">Nicolas Bernardet</span>,
+        <span class="font-bold text-tea-green">Timothée Brindejonc</span> et
+        <span class="font-bold text-tea-green">Jules Steelandt</span>
+    </h3>
 </footer>
 </body>
 </html>
