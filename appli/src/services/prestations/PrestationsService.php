@@ -31,8 +31,8 @@ class PrestationsService {
     }
 
     // retourne la liste des prestations d'une catégorie
-    public static function getPrestationsByCategorie(int $categ_id): array {
-        $prestations = Categorie::find($categ_id)->prestation()->get();
+    public static function getPrestationsByCategorie(int $categ_id, string $order = 'desc'): array {
+        $prestations = Categorie::find($categ_id)->prestation()->orderBy('tarif', $order)->get();
         $res = [];
         foreach($prestations as $presta) {
             $res[] = $presta;

@@ -2,6 +2,8 @@
 
 {% block content %}
     <h1>Toutes les prestations de la catégorie {{ cat.libelle }}</h1>
+    <a href="{{ url_for('catPresta', {'id': cat.id, 'order': 'asc'}) }}">Trier par prix croissant</a>
+    <a href="{{ url_for('catPresta', {'id': cat.id, 'order': 'desc'}) }}">Trier par prix décroissant</a>
     <ul>
         {% for presta in prestations %}
             <li>

@@ -3,7 +3,7 @@
 {% block content %}
     <h1>{{ cat.libelle }}</h1>
     <p>{{ cat.description }}</p>
-    <a href="{{ url_for('catPresta', {'id': cat.id}) }}" >Voir les prestations</a>
+    <a href="{{ url_for('catPresta', {'id': cat.id, 'order': 'desc'}) }}" >Voir les prestations</a>
     <br>
     <a href="{{ url_for('categories') }}">Retour</a>
 {% endblock %}
