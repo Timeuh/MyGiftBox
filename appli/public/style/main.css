@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer components {
+    .nav {
+        @apply bg-dark-tea w-full h-20 text-green-tea text-center text-3xl font-bold space-x-8 flex flex-row items-center justify-center
+            sticky top-0
+    }
+
     .nav-link {
         @apply h-full border-b-4 border-green-tea pt-5 border-opacity-0 hover:border-opacity-100 transition
     }
