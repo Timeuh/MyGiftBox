@@ -3,5 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-
+    .nav-link {
+        @apply h-full border-b-4 border-green-tea pt-5 border-opacity-0 hover:border-opacity-100 transition
+    }
 }
