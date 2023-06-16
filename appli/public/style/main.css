@@ -11,4 +11,8 @@
     .nav-link {
         @apply h-full border-b-4 border-green-tea pt-5 border-opacity-0 hover:border-opacity-100 transition
     }
+
+    .login-link {
+        @apply nav-link text-green-tea text-2xl h-10 pt-0
+    }
 }
