@@ -76,7 +76,7 @@ return function (Slim\App $app): void {
     $app->get('/box/view/public/{token}[/]', DisplayBoxAction::class)->setName('boxView');
 
     // afficher les prestations d'une catégorie
-    $app->get('/categorie/{id}/prestations[/]', DisplayCatPrestationsAction::class)->setName('catPresta');
+    $app->get('/categorie/{id}/prestations/{order}[/]', DisplayCatPrestationsAction::class)->setName('catPresta');
 
     // affiche le formulaire de création de catégorie
     $app->get('/new/categorie[/]', CategorieFormAction::class)->setName('newCat');
