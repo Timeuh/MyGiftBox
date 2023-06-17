@@ -1,10 +1,12 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>Création d'une box</h1>
-    {% if boxCreated %}
-        <h2>La box a bien été créée</h2>
-    {% else %}
-        <h2>La box n'a pas pu être créée</h2>
-    {% endif %}
+    <section id="homepage" class="bg-main-background w-full h-[90vh] flex flex-col justify-center items-center space-y-12 text-green-tea">
+        <h1 class="text-6xl">Création d'une box</h1>
+        {% if boxCreated %}
+            <h2 class="text-4xl text-primary">La box a bien été créée</h2>
+        {% else %}
+            <h2 class="text-4xl text-error">La box n'a pas pu être créée</h2>
+        {% endif %}
+    </section>
 {% endblock %}
