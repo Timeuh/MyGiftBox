@@ -1,12 +1,14 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>Validation de votre box</h1>
-    {% if boxValidated %}
-        <h2>Votre box a été validée !</h2>
-    {% else %}
-        <h2>Votre box n'a pas pu être validée !</h2>
-        <p>Vérifiez qu'elle possède au moins deux prestations de deux catégories différentes.</p>
-    {% endif %}
-    <a href="{{ url_for('displayBox') }}">Voir ma box</a>
+    <section id="homepage" class="bg-main-background w-full h-[90vh] flex flex-col justify-center items-center space-y-12 text-green-tea">
+        <h1 class="text-6xl font-bold">Validation de votre box</h1>
+        {% if boxValidated %}
+            <h2 class="text-4xl font-bold text-tea-green">Votre box a été validée !</h2>
+        {% else %}
+            <h2 class="text-4xl font-bold text-error">Votre box n'a pas pu être validée !</h2>
+            <p class="text-3xl font-bold text-error">Vérifiez qu'elle possède au moins deux prestations de deux catégories différentes.</p>
+        {% endif %}
+        <a href="{{ url_for('displayBox') }}" class="login-link">Voir ma box</a>
+    </section>
 {% endblock %}
