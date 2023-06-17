@@ -35,4 +35,9 @@
     .box-button {
         @apply rounded-xl border-2 border-dark-tea w-28 h-8 hover:bg-primary transition
     }
+
+    .box-link {
+        @apply text-2xl font-bold text-primary hover:text-tea-green transition h-12 border-2 rounded-xl w-48 text-center pt-1
+            border-primary hover:border-tea-green
+    }
 }

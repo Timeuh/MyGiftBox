@@ -1,14 +1,19 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>Mes box</h1>
-    <ul>
-        {% for b in box %}
-        <li>
-            <h3><a href="{{ url_for('boxView', {'token': b.token}) }}" >{{ b.libelle }}</a></h3>
-            <h3>{{ b.description }}</h3>
-            <h3>{{ b.montant }}€</h3>
-        </li>
-        {% endfor %}
-    </ul>
+    <section id="homepage" class="bg-main-background w-full {{ box|length < 4 ? 'h-[90vh]' : 'h-auto' }}
+    flex flex-col justify-center items-center space-y-12 text-green-tea pt-8 pb-24">
+        <h1 class="text-6xl">Mes box</h1>
+        <ul class="w-full flex flex-col items-center space-y-8">
+            {% for b in box %}
+                <li class="flex flex-row items-center justify-around w-1/2 h-52 bg-dark-tea bg-opacity-50 rounded-2xl">
+                    <h3 class="box-link">
+                        <a href="{{ url_for('boxView', {'token': b.token}) }}">{{ b.libelle }}</a>
+                    </h3>
+                    <h3 class="h-12 text-2xl font-bold">{{ b.description }}</h3>
+                    <h3 class="h-12 text-2xl text-tea-green">{{ b.montant }}€</h3>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
 {% endblock %}
