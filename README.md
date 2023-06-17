@@ -10,7 +10,7 @@ Projet MyGiftBox du semestre 4
 Pour installer le projet en local, vous devez générer les dossiers vendor dans api et dans appli et lancer le composer du docker. 
 
 1. Rendez-vous dans ses deux dossiers, puis dans leur src respectifs.
-2. Pour chacun des deux, taper ```compsoser install```, le vendor se génèrera.
+2. Pour chacun des deux, taper ```composer install```, le vendor se génèrera.
 3. Une fois fait, vous avez besoin de créer un .env à la racine pour les utilisateurs de la base de donnée, voici un template du .env :
 
 ```
