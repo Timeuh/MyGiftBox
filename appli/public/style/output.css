@@ -720,6 +720,21 @@ video {
   color: rgb(213 255 217 / var(--tw-text-opacity));
 }
 
+.category-link {
+  height: 100%;
+  width: 100%;
+  padding-top: 1.5rem;
+  text-align: center;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+}
+
+.category-link:hover {
+  --tw-text-opacity: 1;
+  color: rgb(33 13 58 / var(--tw-text-opacity));
+}
+
 .fixed {
   position: fixed;
 }
