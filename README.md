@@ -10,15 +10,18 @@ Projet MyGiftBox du semestre 4
 Pour installer le projet en local, vous devez générer les dossiers vendor dans api et dans appli et lancer le composer du docker. 
 
 1. Rendez-vous dans ses deux dossiers, puis dans leur src respectifs.
-2. Pour chacun des deux, taper "compsoser install", le vendor se génèrera.
+2. Pour chacun des deux, taper ```compsoser install```, le vendor se génèrera.
 3. Une fois fait, vous avez besoin de créer un .env à la racine pour les utilisateurs de la base de donnée, voici un template du .env :
 
+```
 MYSQL_ROOT_PASSWORD=motDePasse
 DB_USER=user
 DB_PASSWORD=user
+```
 
 4. Une fois le .env créer, vous devez créer un fichier gift.db.conf.ini à mettre dans /appli/src/conf et dans /api/src/conf pour que notre application communique avec notre base de donnée. Voici un template du gift.db.conf.ini
 
+```
 driver=mysql
 username=root
 password=motDePasse
@@ -26,10 +29,12 @@ host=gift.db
 database=nomBase
 charset=utf8
 collation=utf8_unicode_ci
+```
+
 
 Pour password le mot de passe doit être le même que pour le "MYSQL_ROOT_PASSWORD" du .env, vous pouvez modifier le nom de la database.
 
-5. Une fois tous les fichiers créer et à leur place dans l'architecture, vous pouvez démarrer les conteneurs docker avec "docker compose up -d" dans la racine du projet.
+5. Une fois tous les fichiers créer et à leur place dans l'architecture, vous pouvez démarrer les conteneurs docker avec ```docker compose up -d``` dans la racine du projet.
 
 6. Si les conteneurs sont démarrés, vous pouvez accéder à la base de donnée sur le lien suivant : localhost:17002. Connectez-vous, créer une base de données du même nom que dans le gift.db.conf.ini "database" et importer le SQL fourni dans le projet.
 
