@@ -13,7 +13,6 @@ use gift\app\actions\DisplayBoxAction;
 use gift\app\actions\DisplayCatPrestationsAction;
 use gift\app\actions\DisplayListBoxAction;
 use gift\app\actions\GetBoxDefaultAction;
-use gift\app\actions\GetBoxFinieAction;
 use gift\app\actions\GetBoxToAddPresta;
 use gift\app\actions\GetCategorieAction;
 use gift\app\actions\GetCategoriesAction;
