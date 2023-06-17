@@ -1,9 +1,10 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>{{ cat.libelle }}</h1>
-    <p>{{ cat.description }}</p>
-    <a href="{{ url_for('catPresta', {'id': cat.id, 'order': 'desc'}) }}" >Voir les prestations</a>
-    <br>
-    <a href="{{ url_for('categories') }}">Retour</a>
+    <section id="homepage" class="bg-main-background w-full h-[90vh] flex flex-col justify-center items-center space-y-12 text-green-tea">
+        <h1 class="text-6xl font-bold text-primary">{{ cat.libelle }}</h1>
+        <p class="text-2xl text-tea-green">{{ cat.description }}</p>
+        <a href="{{ url_for('catPresta', {'id': cat.id, 'order': 'desc'}) }}" class="login-link">Voir les prestations</a>
+        <a href="{{ url_for('categories') }}" class="login-link">Retour</a>
+    </section>
 {% endblock %}
