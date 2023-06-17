@@ -9,7 +9,7 @@
     }
 
     .nav-link {
-        @apply h-full border-b-4 border-green-tea pt-5 border-opacity-0 hover:border-opacity-100 transition
+        @apply h-full border-b-4 border-green-tea pt-4 border-opacity-0 hover:border-opacity-100 transition pb-4
     }
 
     .login-link {
@@ -30,5 +30,9 @@
 
     .form-input {
         @apply rounded-md outline-none ps-2 h-10 focus:outline-primary bg-dark-tea placeholder:text-tea-green text-tea-green
+    }
+
+    .box-button {
+        @apply rounded-xl border-2 border-dark-tea w-28 h-8 hover:bg-primary transition
     }
 }
