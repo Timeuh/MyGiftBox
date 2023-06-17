@@ -1,15 +1,23 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>Box {{ box.libelle }}</h1>
-    <p>{{ box.description }}</p>
-    <h2>Montant {{ box.montant }}€</h2>
-    <ul>
-        {% for pres in prestations %}
-            <li>
-                <h3>{{ pres.libelle }} : {{ pres.tarif }}€. Quantité : {{ pres.pivot.quantite}}</h3>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="{{ url_for('confirmerPaiement', {'token': box.token}) }}">Confirmer le paiement</a>
+    <section id="homepage" class="bg-main-background w-full {{ prestations|length < 3 ? 'h-[90vh]' : 'h-auto' }}
+    flex flex-col justify-center items-center space-y-12 text-green-tea pt-8">
+        <h1 class="text-6xl">Box {{ box.libelle }}</h1>
+        <p class="text-xl text-tea-green">{{ box.description }}</p>
+        <h2 class="text-2xl font-bold text-primary">Montant {{ box.montant }}€</h2>
+        <ul class="w-full flex flex-col items-center space-y-8">
+            {% for pres in prestations %}
+                <li class="flex flex-row items-center justify-around w-1/2 h-52 bg-dark-tea bg-opacity-50 rounded-2xl">
+                    <img src="{{ base_path() }}/img/{{ pres.img }}" alt="{{ pres.img }}" class="w-32 h-auto rounded-xl">
+                    <div class="space-y-4 font-bold text-2xl">
+                        <h3>{{ pres.libelle }} : <span class="text-primary">{{ pres.tarif }} €</span></h3>
+                        <h3>Quantité : <span class="text-primary">{{ pres.pivot.quantite}}</span></h3>
+                        <h2>Catégorie : <span class="text-primary">{{ pres.categorie.libelle }}</span></h2>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('confirmerPaiement', {'token': box.token}) }}" class="login-link pb-24 hover:text-primary transition">Confirmer le paiement</a>
+    </section>
 {% endblock %}

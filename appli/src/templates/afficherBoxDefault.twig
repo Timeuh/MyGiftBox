@@ -1,13 +1,17 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    {% for box in boxes %}
-    <h1>Box {{ box.libelle }}</h1>
-    <p>{{ box.description }}</p>
-    <h2>Montant {{ box.montant }}€</h2>
-        <form method="post" action="{{ url_for('boxDefaultForm') }}">
-            <input type="hidden" name="id" value="{{ box.id }}">
-            <button type="submit">Choisir cette box !</button>
-        </form>
-    {% endfor %}
+    <section id="homepage" class="bg-main-background w-full h-[90vh] flex flex-col justify-center items-center space-y-12 text-green-tea">
+        {% for box in boxes %}
+            <div class="w-full h-1/5 flex flex-col items-center space-y-4">
+                <h1 class="text-6xl">Box {{ box.libelle }}</h1>
+                <p class="text-xl text-tea-green">{{ box.description }}</p>
+                <h2 class="text-2xl font-bold text-primary">Montant {{ box.montant }}€</h2>
+                <form method="post" action="{{ url_for('boxDefaultForm') }}">
+                    <input type="hidden" name="id" value="{{ box.id }}">
+                    <button type="submit" class="login-link">Choisir cette box !</button>
+                </form>
+            </div>
+        {% endfor %}
+    </section>
 {% endblock %}

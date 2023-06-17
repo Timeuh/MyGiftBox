@@ -1,21 +1,27 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>Box {{ box.libelle }}</h1>
-    <p>{{ box.description }}</p>
-    <h2>Montant {{ box.montant }}€</h2>
-    <div>
-        <h1>Votre box est validée, il ne reste plus qu'à payer !</h1>
-        <a href="{{ url_for('payerBox', {'token': box.token}) }}">Payer ma box</a>
+<section id="homepage" class="bg-main-background w-full {{ prestations|length < 3 ? 'h-[90vh]' : 'h-auto' }}
+    flex flex-col justify-center items-center space-y-8 text-green-tea pt-8">
+    <h1 class="text-6xl pt-12">Box {{ box.libelle }}</h1>
+    <p class="text-xl text-tea-green">{{ box.description }}</p>
+    <h2 class="text-2xl font-bold text-primary">Montant {{ box.montant }}€</h2>
+    <div class="space-y-4 flex flex-col items-center">
+        <h1 class="text-2xl">Votre box est validée, il ne reste plus qu'à payer !</h1>
+        <a href="{{ url_for('payerBox', {'token': box.token}) }}" class="text-2xl text-center login-link">Payer ma box</a>
     </div>
-    <ul>
+    <ul class="w-full flex flex-col items-center space-y-8">
         {% for pres in prestations %}
-            <li>
-                <h3>{{ pres.libelle }} : {{ pres.tarif }}€. Quantité : {{ pres.pivot.quantite}}</h3>
-                <h3>Catégorie : {{ pres.categorie.libelle }}</h3>
-                <img src="{{ base_path() }}/img/{{ pres.img }}" alt="{{ pres.img }}" width="100" height="100">
+            <li class="flex flex-row items-center justify-around w-1/2 h-52 bg-dark-tea bg-opacity-50 rounded-2xl">
+                <img src="{{ base_path() }}/img/{{ pres.img }}" alt="{{ pres.img }}" class="w-32 h-auto rounded-xl">
+                <div class="space-y-4 font-bold text-2xl">
+                    <h3>{{ pres.libelle }} : <span class="text-primary">{{ pres.tarif }} €</span></h3>
+                    <h3>Quantité : <span class="text-primary">{{ pres.pivot.quantite}}</span></h3>
+                    <h2>Catégorie : <span class="text-primary">{{ pres.categorie.libelle }}</span></h2>
+                </div>
             </li>
         {% endfor %}
     </ul>
-    <a href="{{ url_for('categories') }}">Retour à l'accueil</a>
+    <a href="{{ url_for('categories') }}" class="login-link pb-32 hover:text-primary transition">Retour à l'accueil</a>
+</section>
 {% endblock %}

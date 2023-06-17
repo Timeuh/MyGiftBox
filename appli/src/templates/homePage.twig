@@ -1,13 +1,21 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>Home Page</h1>
-    {% if log %}
-        <h1> Bienvenue {{ prenom }} {{ nom }}</h1>
-        <a href="{{ url_for('boxDefault') }}"> Voir les box par défaut</a>
-        <a href="{{ url_for('logout') }}"> Déconnexion</a>
-    {% else %}
-        <a href="{{ url_for('login') }}">Connexion</a>
-        <a href="{{ url_for('register') }}">Inscription</a>
-    {% endif %}
+    <section id="homepage" class="bg-main-background w-full h-[90vh] flex flex-col justify-center items-center space-y-12">
+        <h1 class="text-6xl font-bold text-tea-green">Home Page</h1>
+        <div class="w-full flex-col flex items-center space-y-8">
+            {% if log %}
+                <h1 class="text-3xl text-primary"> Bienvenue {{ prenom }} {{ nom }}</h1>
+                <div class="flex flex-row items-center justify-between w-1/4">
+                    <a href="{{ url_for('boxDefault') }}" class="login-link"> Voir les box par défaut</a>
+                    <a href="{{ url_for('logout') }}" class="login-link"> Déconnexion</a>
+                </div>
+            {% else %}
+                <div class="flex flex-row items-center justify-around w-1/6">
+                    <a href="{{ url_for('login') }}" class="login-link">Connexion</a>
+                    <a href="{{ url_for('register') }}" class="login-link">Inscription</a>
+                </div>
+            {% endif %}
+        </div>
+    </section>
 {% endblock %}

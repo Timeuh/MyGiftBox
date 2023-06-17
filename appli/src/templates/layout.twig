@@ -1,24 +1,26 @@
 <html lang="fr">
 <head>
-    <title>Appli</title>
+    <title>MyGiftBox</title>
     <link rel="stylesheet" href="{{ base_path() }}/style/output.css">
+    <link rel="icon" href="{{ base_path() }}/icon/icon.png">
 </head>
 <body class="h-screen w-full flex flex-col items-center">
-    <header>
-        <h1>Mon application avec Slim et Twig</h1>
-    </header>
-    <nav>
-        <a href="{{ url_for('homePage') }}">Home</a>
-        <a href="{{ url_for('categories') }}">Catégories</a>
-        <a href="{{ url_for('newBox') }}">+Box</a>
-        <a href="{{ url_for('displayBox') }}">Mes Box</a>
+    <nav class="nav">
+        <a href="{{ url_for('homePage') }}" class="nav-link">Home</a>
+        <a href="{{ url_for('categories') }}" class="nav-link">Catégories</a>
+        <a href="{{ url_for('newBox') }}" class="nav-link">+Box</a>
+        <a href="{{ url_for('displayBox') }}" class="nav-link">Mes Box</a>
     </nav>
-    <main>
+    <main class="w-full">
         {% block content %}
         {% endblock %}
     </main>
-    <footer>
-        <h3>Site créé par Timothée Brindejonc</h3>
+    <footer class="w-full h-10 bg-dark-tea fixed bottom-0">
+        <h3 class="text-green-tea pt-2 ps-2">Site créé par
+            <span class="font-bold text-tea-green">Nicolas Bernardet</span>,
+            <span class="font-bold text-tea-green">Timothée Brindejonc</span> et
+            <span class="font-bold text-tea-green">Jules Steelandt</span>
+        </h3>
     </footer>
 </body>
 </html>

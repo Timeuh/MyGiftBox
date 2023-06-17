@@ -1,26 +1,30 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>{{ cat }}</h1>
-    <h2>{{ presta.libelle }}</h2>
-    <img src="{{ base_path() }}/img/{{ presta.img }}" width="200" height="200"/>
-    <p>{{ presta.description }}</p>
-    {% if presta.unite != null %}
-    <p>{{ presta.unite }}</p>
-    {% endif %}
-    <p>{{ presta.tarif }}€</p>
-    {% if hasBox %}
-        <form method="post" action="{{ url_for('takeBox') }}">
-            <input type="hidden" name="presta" value="{{ presta.id }}">
-            <input type="hidden" name="box" value="{{ box_id }}">
-            <label>Quantité :
-                <input type="number" name="quantite" value=1 />
-            </label>
-            <button type="submit">+</button>
-        </form>
-    {% else %}
-        <h1>Vous n'avez pas de box, ou toutes vont box sont déjà validées</h1>
-        <h2>Si vous voulez ajouter cette prestation à une box, créez-en une nouvelle !</h2>
-    {% endif %}
-    <a href="{{ url_for('categories') }}">Accueil</a>
+    <section id="homepage" class="bg-main-background w-full h-[90vh] flex flex-col justify-center items-center space-y-12 text-green-tea">
+        <h1 class="text-6xl font-bold">{{ cat }}</h1>
+        <h2 class="text-4xl font-bold text-tea-green">{{ presta.libelle }}</h2>
+        <div class="flex flex-row items-center w-full h-1/4 justify-center space-x-8">
+            <img src="{{ base_path() }}/img/{{ presta.img }}" class="w-56 h-auto rounded-xl"/>
+            <p class="w-1/4 text-2xl">{{ presta.description }}</p>
+            {% if presta.unite != null %}
+                <p class="text-2xl">{{ presta.unite }}</p>
+            {% endif %}
+            <p class="text-2xl font-bold text-primary">{{ presta.tarif }}€</p>
+        </div>
+        {% if hasBox %}
+            <form method="post" action="{{ url_for('takeBox') }}" class="flex flex-row items-center w-full h-1/4 justify-center space-x-8">
+                <input type="hidden" name="presta" value="{{ presta.id }}">
+                <input type="hidden" name="box" value="{{ box_id }}">
+                <label class="form-label">Quantité :
+                    <input type="number" name="quantite" value="1" class="form-input">
+                </label>
+                <button type="submit" class="text-6xl border-2 border-primary text-primary rounded-xl pb-2 w-16">+</button>
+            </form>
+        {% else %}
+            <h1 class="text-3xl">Vous n'avez pas de box, ou toutes vont box sont déjà validées</h1>
+            <h2 class="text-3xl">Si vous voulez ajouter cette prestation à une box, créez-en une nouvelle !</h2>
+        {% endif %}
+        <a href="{{ url_for('categories') }}" class="login-link">Accueil</a>
+    </section>
 {% endblock %}

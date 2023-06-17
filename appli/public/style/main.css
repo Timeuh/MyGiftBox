@@ -3,5 +3,50 @@
 @tailwind utilities;
 
 @layer components {
+    .nav {
+        @apply bg-dark-tea w-full h-20 text-green-tea text-center text-3xl font-bold space-x-8 flex flex-row items-center justify-center
+            sticky top-0
+    }
 
+    .nav-link {
+        @apply h-full border-b-4 border-green-tea pt-4 border-opacity-0 hover:border-opacity-100 transition pb-4
+    }
+
+    .login-link {
+        @apply nav-link text-green-tea text-2xl h-10 pt-0
+    }
+
+    .login-form {
+        @apply h-full w-full flex flex-col items-center justify-around
+    }
+
+    .register-form {
+        @apply h-1/2 w-full flex flex-col items-center justify-around
+    }
+
+    .form-label {
+        @apply text-primary text-2xl font-bold
+    }
+
+    .form-input {
+        @apply rounded-md outline-none ps-2 h-10 focus:outline-primary bg-dark-tea placeholder:text-tea-green text-tea-green
+    }
+
+    .box-button {
+        @apply rounded-xl border-2 border-dark-tea w-28 h-8 hover:bg-primary transition
+    }
+
+    .box-link {
+        @apply text-2xl font-bold text-primary hover:text-tea-green transition h-12 border-2 rounded-xl w-48 text-center pt-1
+            border-primary hover:border-tea-green
+    }
+
+    .order-link {
+        @apply w-56 h-12 border-2 border-primary text-primary hover:border-tea-green hover:text-tea-green rounded-xl transition
+            text-center pt-3
+    }
+
+    .category-link {
+        @apply w-full h-full text-4xl font-bold text-center hover:text-primary pt-6
+    }
 }

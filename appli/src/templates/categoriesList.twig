@@ -1,10 +1,15 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>Catégories</h1>
-    <ul>
-        {% for cat in categories %}
-            <li><a href="{{ url_for('catById', {'id': cat.id}) }}">{{ cat.libelle }}</a></li>
-        {% endfor %}
-    </ul>
+    <section id="homepage" class="bg-main-background w-full {{ prestations|length < 3 ? 'h-[90vh]' : 'h-auto' }}
+    flex flex-col justify-center items-center space-y-12 text-green-tea pt-8">
+        <h1 class="text-6xl">Catégories</h1>
+        <ul class="w-full flex flex-col items-center space-y-8">
+            {% for cat in categories %}
+                <li class="flex flex-row items-center justify-around w-1/2 h-24 bg-dark-tea bg-opacity-50 rounded-2xl">
+                    <a href="{{ url_for('catById', {'id': cat.id}) }}" class="category-link">{{ cat.libelle }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
 {% endblock %}
