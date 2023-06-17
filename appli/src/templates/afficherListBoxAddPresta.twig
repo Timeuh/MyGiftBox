@@ -1,21 +1,23 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    {% if box is null %}
-        <h1> Vous n'avez aucune box modifiable !</h1>
-    {% else %}
-        <h1>Ou voulez vous ajouter la prestation</h1>
-        <form id="AddPrestaToBox" method="post" action="{{ url_for('AddPrestaToBox') }}">
-            <ul>
-                {% for b in box %}
-                    <li>
-                        <button name='box' type="submit" value="{{ b.id }}">{{ b.libelle }}</button>
-                        <input type="hidden" name="quantite" value="{{ quantite }}">
-                    </li>
-                {% endfor %}
-            </ul>
-            <input type="hidden" name="presta" value="{{ presta }}">
-        </form>
-
-    {% endif %}
+    <section id="homepage" class="bg-main-background w-full {{ box|length < 4 ? 'h-[90vh]' : 'h-auto' }}
+    flex flex-col justify-center items-center space-y-12 text-green-tea pt-8 pb-24">
+        {% if box is null %}
+            <h1 class="text-6xl"> Vous n'avez aucune box modifiable !</h1>
+        {% else %}
+            <h1 class="text-6xl">Où voulez-vous ajouter la prestation ?</h1>
+            <form id="AddPrestaToBox" method="post" action="{{ url_for('AddPrestaToBox') }}" class="w-full">
+                <ul class="w-full flex flex-col items-center space-y-8">
+                    {% for b in box %}
+                        <li class="flex flex-row items-center justify-around w-1/2 h-24 bg-dark-tea bg-opacity-50 rounded-2xl">
+                            <button name='box' type="submit" value="{{ b.id }}" class="box-link">{{ b.libelle }}</button>
+                            <input type="hidden" name="quantite" value="{{ quantite }}">
+                        </li>
+                    {% endfor %}
+                </ul>
+                <input type="hidden" name="presta" value="{{ presta }}">
+            </form>
+        {% endif %}
+    </section>
 {% endblock %}
