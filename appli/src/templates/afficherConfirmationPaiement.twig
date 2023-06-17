@@ -1,11 +1,13 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>Paiement de votre box</h1>
-    {% if success %}
-        <h2>Vous avez payé votre box !</h2>
-    {% else %}
-        <h2>Une erreur est survenue au paiement de votre box, veuillez réessayer !</h2>
-    {% endif %}
-    <a href="{{ url_for('displayBox') }}">Voir mes box</a>
+    <section id="homepage" class="bg-main-background w-full h-[90vh] flex flex-col justify-center items-center space-y-12 text-green-tea">
+        <h1 class="text-6xl">Paiement de votre box</h1>
+        {% if success %}
+            <h2 class="text-2xl font-bold text-primary">Vous avez payé votre box !</h2>
+        {% else %}
+            <h2 class="text-2xl font-bold text-primary">Une erreur est survenue au paiement de votre box, veuillez réessayer !</h2>
+        {% endif %}
+        <a href="{{ url_for('displayBox') }}" class="login-link">Voir mes box</a>
+    </section>
 {% endblock %}
