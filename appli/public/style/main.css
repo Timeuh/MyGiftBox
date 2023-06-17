@@ -20,6 +20,10 @@
         @apply h-full w-full flex flex-col items-center justify-around
     }
 
+    .register-form {
+        @apply h-1/2 w-full flex flex-col items-center justify-around
+    }
+
     .form-label {
         @apply text-primary text-2xl font-bold
     }

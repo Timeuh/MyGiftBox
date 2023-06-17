@@ -1,18 +1,17 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-<h1>Login</h1>
-<div id="register">
-    <form id="inscription" method="post" action="{{ url_for('register') }}">
-        <label>Prénom : </label>
-        <input name="prenom" type="text" placeholder="<prenom>">
-        <label>Nom : </label>
-        <input name="nom" type="text" placeholder="<nom>">
-        <label>Email : </label>
-        <input name="email" type="email" placeholder="<email>">
-        <label>Mot de passe : </label>
-        <input name="password" type="password" placeholder="<password>">
-        <button type="submit">valider</button>
+<div id="register" class="bg-main-background w-full h-[90vh] flex flex-col justify-center items-center space-y-12">
+    <form id="inscription" method="post" action="{{ url_for('register') }}" class="register-form">
+        <label class="form-label">Prénom : </label>
+        <input name="prenom" type="text" placeholder="<prenom>" class="form-input">
+        <label class="form-label">Nom : </label>
+        <input name="nom" type="text" placeholder="<nom>" class="form-input">
+        <label class="form-label">Email : </label>
+        <input name="email" type="email" placeholder="<email>" class="form-input">
+        <label class="form-label">Mot de passe : </label>
+        <input name="password" type="password" placeholder="<password>" class="form-input">
+        <button type="submit" class="login-link text-3xl">valider</button>
     </form>
 </div>
 {% endblock %}

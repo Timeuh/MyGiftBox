@@ -602,6 +602,15 @@ video {
   justify-content: space-around;
 }
 
+.register-form {
+  display: flex;
+  height: 50%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
 .form-label {
   font-size: 1.5rem;
   line-height: 2rem;
