@@ -25,12 +25,7 @@ class BoxService
         // les filtre, puis, s'ils ne correspondent pas, lance une erreur
         if ($libelle !== filter_var($libelle, FILTER_UNSAFE_RAW) || $description !== filter_var($description, FILTER_UNSAFE_RAW)
             || $messageCadeau !== filter_var($messageCadeau, FILTER_UNSAFE_RAW)) {
-            throw new Exception('Les champs entrés ne sont pas valides !');
-        }
-
-        // les filtre, puis, s'ils ne correspondent pas, lance une erreur
-        if (!isset($_SESSION["user"]->email)) {
-            throw new Exception('Il faut etre connecté pour créer une box');
+            throw new Exception('Erreur : Les champs entrés ne sont pas valides !');
         }
 
         // crée une box
