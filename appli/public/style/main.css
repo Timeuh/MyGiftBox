@@ -40,4 +40,9 @@
         @apply text-2xl font-bold text-primary hover:text-tea-green transition h-12 border-2 rounded-xl w-48 text-center pt-1
             border-primary hover:border-tea-green
     }
+
+    .order-link {
+        @apply w-56 h-12 border-2 border-primary text-primary hover:border-tea-green hover:text-tea-green rounded-xl transition
+            text-center pt-3
+    }
 }

@@ -1,17 +1,22 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>Toutes les prestations de la catégorie {{ cat.libelle }}</h1>
-    <a href="{{ url_for('catPresta', {'id': cat.id, 'order': 'asc'}) }}">Trier par prix croissant</a>
-    <a href="{{ url_for('catPresta', {'id': cat.id, 'order': 'desc'}) }}">Trier par prix décroissant</a>
-    <ul>
-        {% for presta in prestations %}
-            <li>
-                <a href="{{ base_path() }}/prestation?id={{ presta.id }}">{{ presta.libelle }}</a>
-                <span>{{ presta.tarif }}€</span>
-                <img src="{{ base_path() }}/img/{{ presta.img }}" alt="{{ presta.img }}" width="100" height="100">
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="{{ url_for('catById', {'id': cat.id}) }}">Retour</a>
+    <section id="homepage" class="bg-main-background w-full {{ prestations|length < 3 ? 'h-[90vh]' : 'h-auto' }}
+    flex flex-col justify-center items-center space-y-12 text-green-tea pt-8">
+        <h1 class="text-6xl">Toutes les prestations de la catégorie {{ cat.libelle }}</h1>
+        <div class="flex flex-row justify-around items-center space-x-8">
+            <a href="{{ url_for('catPresta', {'id': cat.id, 'order': 'asc'}) }}" class="order-link">Trier par prix croissant</a>
+            <a href="{{ url_for('catPresta', {'id': cat.id, 'order': 'desc'}) }}" class="order-link">Trier par prix décroissant</a>
+        </div>
+        <ul class="w-full flex flex-col items-center space-y-8">
+            {% for presta in prestations %}
+                <li class="flex flex-row items-center justify-around w-1/2 h-52 bg-dark-tea bg-opacity-50 rounded-2xl">
+                    <img src="{{ base_path() }}/img/{{ presta.img }}" alt="{{ presta.img }}" width="100" height="100">
+                    <a href="{{ base_path() }}/prestation?id={{ presta.id }}" class="login-link">{{ presta.libelle }}</a>
+                    <span class="text-primary text-2xl font-bold">{{ presta.tarif }}€</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('catById', {'id': cat.id}) }}" class="login-link pb-24 hover:text-primary transition">Retour</a>
+    </section>
 {% endblock %}
