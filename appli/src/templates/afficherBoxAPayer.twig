@@ -2,8 +2,8 @@
 
 {% block content %}
 <section id="homepage" class="bg-main-background w-full {{ prestations|length < 3 ? 'h-[90vh]' : 'h-auto' }}
-    flex flex-col justify-center items-center space-y-12 text-green-tea pt-8">
-    <h1 class="text-6xl">Box {{ box.libelle }}</h1>
+    flex flex-col justify-center items-center space-y-8 text-green-tea pt-8">
+    <h1 class="text-6xl pt-12">Box {{ box.libelle }}</h1>
     <p class="text-xl text-tea-green">{{ box.description }}</p>
     <h2 class="text-2xl font-bold text-primary">Montant {{ box.montant }}€</h2>
     <div class="space-y-4 flex flex-col items-center">
@@ -22,6 +22,6 @@
             </li>
         {% endfor %}
     </ul>
-    <a href="{{ url_for('categories') }}" class="login-link pb-24 hover:text-primary transition">Retour à l'accueil</a>
+    <a href="{{ url_for('categories') }}" class="login-link pb-32 hover:text-primary transition">Retour à l'accueil</a>
 </section>
 {% endblock %}
