@@ -40,7 +40,7 @@ Pour password le mot de passe doit être le même que pour le "MYSQL_ROOT_PASSWO
 
 7. L'application est maintenant fonctionnelle sur le lien suivant : localhost:17000. L'api est disponible sur le lien suivant : localost:17003/api/. L'api est accessible avec les routes suivantes : /api/prestations, /api/catégories, /api/catégories/[id_cat]/prestations et /api/coffrets/[id].
 
-Un utilisateur déjà inscrit de test est disponible, avec l'email "user@mail.com" et "user1" en mot de passe.
+Un utilisateur déjà inscrit de test est disponible, avec l'email "user1@mail.com" et "user1" en mot de passe.
 
 # Fonctionnalités
 ## 1 Afficher la liste des prestations
